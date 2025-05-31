@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Hub</title>
+  <title>Trivia Games</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Jost', sans-serif;
       background: #212B2C;
       margin: 0;
       padding: 0;
@@ -26,6 +27,7 @@
       letter-spacing:0.2em;
       font-weight:600;
       text-transform: uppercase;
+      font-family:'Jost', sans-serif;
     }
 
     h2 {
@@ -43,10 +45,10 @@
     }
 
     p {
-      font-size: 1.3em;
+      font-size: 1.4em;
       color: #e6e6d5;
       margin-bottom: 5%;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 0.1em;
     }
 
@@ -54,9 +56,9 @@
       display: flex;
       flex-direction: column;
       gap: 1em;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Jost', sans-serif;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 400;
     }
 
     .quiz-links a {
@@ -80,8 +82,7 @@
       justify-content: center;
       gap: 1em;
       margin-bottom: 2em;
-      width: 90%;
-      max-width: 90vw;
+      width:100%;
       flex-wrap: wrap;
     }
 
@@ -96,9 +97,9 @@
       transition: background 0.3s;
       text-transform: uppercase;
       font-weight: 400;
-      width: 100%;
-      max-width: 20rem;
       letter-spacing: 0.09em;
+      width:100%;
+      max-width:400px;
     }
 
     .category-btn:hover {
@@ -125,12 +126,13 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      width: 90%;
-      max-width: 800px;
+      width: 100%;
       opacity: 0;
       transform: translateY(10px);
     
     }
+
+    
 
     .quiz-group.active {
       display:flex;
@@ -140,7 +142,7 @@
 
     .quiz-group h2 {
       margin-bottom: 0.5em;
-      font-size: 1.4em;
+      font-size: 1.3em;
       color: #F2D06C;
       letter-spacing: 0.08em;
       opacity:0;
@@ -158,8 +160,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      max-width: 90vw;
+      width: 70%;
       padding: 1em 2em;
       margin: 0.5em auto;
       background-color: transparent;
@@ -169,7 +170,7 @@
       text-decoration: none;
       text-transform: uppercase;
       font-weight: 400;
-      font-size: 1em;
+      font-size: 1.1em;
       letter-spacing: 0.06em;
       box-sizing: border-box;
       transition: background 0.3s;
@@ -227,20 +228,23 @@
         margin-top:0em;
       }
 
-      #categories {
+      #categories.fade-in-load.loaded {
         flex-direction: column;
         align-items: center;
         margin-top: 0.5em;
-        width: 100%;
+        width: 95%;
         margin-bottom:0.03em;
       }
 
       .category-btn {
-        width: 90%;
+        width: 95%;
       }
 
       .quiz-group {
-        width: 90%;
+        width: 95%;
+      }
+      .quiz-btn {
+        width:95%;
       }
     }
   </style>

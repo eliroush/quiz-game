@@ -9,6 +9,7 @@ document.body.classList.add(`${quizName}-theme`);
 const quizTitles = {
   plants: "Plants – Quiz",
   columbia: "Columbia, SC – Quiz",
+  keylimepie: "Key Lime Pie Quiz",
   // Add more here as needed
 };
 
@@ -197,7 +198,9 @@ function showResult() {
       incorrectAnswers = [];
   
       if (mode === "quick") {
-        currentData = [...fullData].sort(() => 0.5 - Math.random()).slice(0, totalQuick);
+        currentData = [...fullData]
+          .sort(() => 0.5 - Math.random())
+          .slice(0, Math.min(totalQuick, fullData.length));
       } else {
         currentData = [...fullData].sort(() => 0.5 - Math.random());
       }
