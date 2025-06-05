@@ -46,7 +46,7 @@
 
     p {
       font-size: 1.4em;
-      color: #e6e6d5;
+      color: #ffeeba;
       margin-bottom: 5%;
       font-weight: 400;
       letter-spacing: 0.1em;
@@ -63,8 +63,6 @@
 
     .quiz-links a {
       text-decoration: none;
-      background-color: #89b111;
-      color: #fff;
       padding: 1em 2em;
       border-radius: 8px;
       transition: background 0.3s;
@@ -74,7 +72,6 @@
     }
 
     .quiz-links a:hover {
-      background-color: #6d9d14;
     }
 
     #categories {
@@ -106,6 +103,23 @@
       background-color: #F2D06C;
       color: #212B2C;
     }
+
+    .category-btn.dropdown-toggle {
+  width:100%;
+  max-width:400px;
+}
+
+.category-btn.dropdown-toggle.active::after {
+  content: "▲";
+  right:0.2em;
+  
+}
+
+.category-btn.dropdown-toggle::after {
+  content: "▼";
+  right:0.2em;
+  
+}
 
     #quizzes {
       display: flex;
@@ -164,8 +178,8 @@
       padding: 1em 2em;
       margin: 0.5em auto;
       background-color: transparent;
-      border: 2px solid #F2D06C;
-      color: #F2D06C;
+      border: 2px solid #ffeeba;
+      color: #ffeeba;
       border-radius: 8px;
       text-decoration: none;
       text-transform: uppercase;
@@ -178,9 +192,66 @@
     }
 
     .quiz-btn:hover {
-      background-color: #F2D06C;
+      background-color: #ffeeba;
       color: #212B2C;
+      border-color:#ffeeba;
     }
+    .subcategory-btn {
+      background-color:transparent;
+      color:#ffecb4;
+      font-size:1em;
+      font-weight:400;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .subcategory-btn:hover {
+      color:#F2D06C;
+      
+      
+    }
+
+    .subcategory-btn.active{
+      color:#f7e5b19d;
+      
+      
+    }
+
+    /* Add transition effect */
+.subcategory-group {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+  margin-top: 1rem; /* spacing below other buttons */
+}
+
+/* Active/open state */
+.subcategory-group.open {
+  max-height: 500px; /* adjust depending on content */
+  opacity: 1;
+}
+
+/* fade it out */
+.subcategory-btn.hide-when-selected {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#summer-toggle .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+#summer-subcategories.open + #summer-toggle .arrow,
+#summer-toggle.open .arrow {
+  transform: rotate(180deg);
+}
+
+    .quiz-group  h2 {
+      text-transform:uppercase; 
+      color:#ffeeba;}
 
     .fade-in-load {
       opacity: 0;
@@ -208,7 +279,7 @@
     .quiz-group.active a.quiz-btn:nth-child(4) {
       animation-delay: 0.3s;
 }
-/* Add more if needed for additional buttons */
+/* Add additional buttons when needed */
 
 @keyframes fadeSlideIn {
   to {
@@ -257,8 +328,17 @@
 
   <div id="categories" class="fade-in-load">
     <button class="category-btn" data-category="location">Location Quizzes</button>
-    <button class="category-btn" data-category="food">Summer Food Quizzes</button>
+  
+    <!-- Inline toggle button like the others -->
+    <button class="category-btn" data-toggle="summer-subcategories" id="summer-toggle">Summer Series<span class="arrow">▼</span></button>
+  
     <button class="category-btn" data-category="garden">Gardening & Nature</button>
+  </div>
+  
+  <!-- Subcategories -->
+  <div class="subcategory-group" id="summer-subcategories">
+    <button class="subcategory-btn" data-subcategory="summer-dish">The Summer Dish</button>
+    <!-- more subcategories -->
   </div>
 
   <!-- QUIZ DISPLAY AREA -->
@@ -269,10 +349,10 @@
     <a href="quiz.html?quiz=columbia" class="quiz-btn">Columbia, SC Fun Facts</a>
   </div>
 
-  <div class="quiz-group" id="food">
-    <h2>Summer Food Quizzes</h2>
-    <!-- Add more quizzes -->
-    <a href="quiz.html?quiz=keylimepie" class="quiz-btn">Key Lime Pie</a>
+  <div class="quiz-group" id="summer-dish">
+    <h2>The Summer Dish</h2>
+    <a href="quiz.html?quiz=keylimepie" class="quiz-btn">Key Lime Pie Trivia</a>
+    <a href="quiz.html?quiz=strawberry" class="quiz-btn">Strawberry Shortcake + Strawberry Trivia</a>
   </div>
 
   <div class="quiz-group" id="garden">
@@ -282,34 +362,85 @@
 </div>
 
 <script>
+  // Selectors
   const categoryButtons = document.querySelectorAll(".category-btn");
-const quizGroups = document.querySelectorAll(".quiz-group");
+  const subcategoryButtons = document.querySelectorAll(".subcategory-btn");
+  const quizGroups = document.querySelectorAll(".quiz-group");
+  const summerSubcategories = document.getElementById("summer-subcategories");
+  const summerToggleButton = document.getElementById("summer-toggle");
 
-categoryButtons.forEach(button => {
-  button.addEventListener("click", () => {
+  // Handle category button clicks
+  categoryButtons.forEach(button => {
+    const toggleTarget = button.getAttribute("data-toggle");
     const category = button.getAttribute("data-category");
-    const selectedGroup = document.getElementById(category);
-    const isActive = selectedGroup.classList.contains("active");
 
-    // Hide all groups first
-    quizGroups.forEach(group => group.classList.remove("active"));
+    button.addEventListener("click", () => {
+      // TOGGLE BUTTON: Summer Series
+      if (toggleTarget) {
+  const targetEl = document.getElementById(toggleTarget);
+  const isOpen = targetEl.classList.contains("open");
 
-    // If it wasn't already active, show it
-    if (!isActive) {
-      selectedGroup.classList.add("active");
-    }
-    // If it was active, we’ve already removed it — nothing more needed
+  // Hide all quiz groups
+  quizGroups.forEach(group => group.classList.remove("active"));
+
+  // Close summer submenu if it's already open, or open it if closed
+  targetEl.classList.toggle("open", !isOpen);
+  button.classList.toggle("open", !isOpen);
+
+  // Clear selected subcategory highlighting
+  subcategoryButtons.forEach(btn => btn.classList.remove("hide-when-selected"));
+
+  return;
+}
+
+      // REGULAR CATEGORY BUTTON
+      const selectedGroup = document.getElementById(category);
+      const isActive = selectedGroup?.classList.contains("active");
+
+      // Hide all quiz groups
+      quizGroups.forEach(group => group.classList.remove("active"));
+
+      // Always hide summer submenu + arrow
+      summerSubcategories.classList.remove("open");
+      summerToggleButton?.classList.remove("open");
+
+      // Toggle: if it was already open, hide it; otherwise, show it
+      if (!isActive) {
+        selectedGroup?.classList.add("active");
+      }
+    });
   });
-});
 
-window.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".fade-in-load").forEach(el => {
-    setTimeout(() => {
-      el.classList.add("loaded");
-    }, 100); // short delay for effect
+  // Subcategory buttons
+  subcategoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const subcategory = button.getAttribute("data-subcategory");
+
+      // Hide all quiz groups
+      quizGroups.forEach(group => group.classList.remove("active"));
+
+      // Show selected quiz group
+      const selectedGroup = document.getElementById(subcategory);
+      selectedGroup?.classList.add("active");
+
+      // Hide all subcategory buttons except selected
+      subcategoryButtons.forEach(btn => btn.classList.remove("hide-when-selected"));
+      button.classList.add("hide-when-selected");
+    });
   });
-});
 
+  // Fade-in loader effect
+  window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".fade-in-load").forEach(el => {
+      setTimeout(() => {
+        el.classList.add("loaded");
+      }, 100);
+    });
+
+    // Collapse Summer submenu on load
+    summerSubcategories.classList.remove("open");
+    summerToggleButton?.classList.remove("open");
+  });
 </script>
 </body>
 </html>
