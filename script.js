@@ -11,7 +11,8 @@ const quizTitles = {
   columbia: "Columbia, SC – Quiz",
   keylimepie: "Key Lime Pie Quiz",
   strawberry: "Strawberry Shortcake Quiz",
-  burgers: "Grilling & Burgers Quiz"
+  burgers: "Grilling & Burgers Quiz",
+  famousbeaches: "Famous Beaches Quiz"
   // Add more here as needed
 };
 

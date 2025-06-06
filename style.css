@@ -1260,3 +1260,308 @@ body.burgers-theme .home-button:hover {
 
 
 
+/* BEACHES THEME STYLING */
+
+
+body.famousbeaches-theme {
+  background-color: #EADAA4;
+  padding-top:5%;
+  color:#154e5e;
+}
+
+body.famousbeaches-theme .back-button {
+  border-color: #1A5D70;
+  color:#1A5D70;
+}
+
+body.famousbeaches-theme .back-button:hover {
+  background-color: #21758c;
+  color:#1752627a;
+  transition: all 0.3s ease;
+}
+
+body.famousbeaches-theme #quiz-container h2{
+  color:#1A5D70;
+  text-transform: uppercase;
+}
+
+body.famousbeaches-theme #quiz-container h3{
+  color:#0090B0;
+  text-transform: uppercase;
+}
+
+body.famousbeaches-theme #quiz-container {
+  background-color: #ffffff;
+  border: solid #1A5D70;
+  border-width: 2px;
+}
+
+body.famousbeaches-theme #quiz-container .mini-title {
+  color:#0090B0;
+  text-transform: uppercase;
+  
+}
+
+body.famousbeaches-theme #quiz-options li{
+  background-color: #446F5E;
+  color:#ffffff;
+  
+}
+
+body.famousbeaches-theme #quiz-options li:hover {
+  background: #509378;
+  color:#fff;
+}
+
+body.famousbeaches-theme .correct-answer {
+  background-color: #0090B0 !important;
+  color: #fff!important;
+}
+
+body.famousbeaches-theme {
+  --pop-color: #009dc1;
+}
+
+
+body.famousbeaches-theme .incorrect-answer {
+  background-color: #82a9b2e6!important;
+  color: #fff!important;
+}
+
+
+body.famousbeaches-theme #next-btn{
+  background-color:#1A5D70;
+}
+
+body.famousbeaches-theme #next-btn:hover{
+  background-color:#1c748c;
+}
+
+body.famousbeaches-theme .answer-description{
+  background-color:#D9EBF4;
+  border-left:4px solid #0090B0;
+  color:#154e5e;
+}
+
+body.famousbeaches-theme h1 {
+  color:#1A5D70;
+  
+}
+
+body.famousbeaches-theme #quiz-progress {
+  color:#0090B0;
+}
+
+
+body.famousbeaches-theme #quiz-question {
+  color:#154e5e;
+}
+
+body.famousbeaches-theme #fade-in h2{
+  color:#154e5e;
+}
+
+body.famousbeaches-theme .no-bullets{
+  color:#154e5e;
+}
+
+body.famousbeaches-theme .mini-title {
+  color:#1A5D70;
+
+}
+
+
+body.famousbeaches-theme #quiz-mode-select button {
+  background-color:#1A5D70;
+  color:white;
+  
+}
+
+body.famousbeaches-theme #quiz-mode-select button:hover {
+  background-color:#207f99;
+  color:white;
+  
+}
+
+
+body.famousbeaches-theme .end-buttons button {
+  background-color:#1A5D70;
+  color:white;
+  
+}
+
+body.famousbeaches-theme .end-buttons button:hover {
+  background-color:#207f99;
+  color:white;
+  
+}
+
+body.famousbeaches-theme .home-button {
+  background-color:#1A5D70;
+  color:white;
+  
+}
+
+body.famousbeaches-theme .home-button:hover {
+  background-color:#207f99;
+  color:white;
+  
+}
+
+
+
+
+
+/* ROADTRIP THEME STYLING */
+
+
+body.roadtrip-theme {
+  background-color: #354857;
+  padding-top:5%;
+  color:#D3BE48;
+}
+
+body.roadtrip-theme .back-button {
+  border-color: #D3BE48;
+  color:#D3BE48;
+}
+
+body.roadtrip-theme .back-button:hover {
+  background-color: #d3be4893;
+  color:#D3BE48;
+  transition: all 0.3s ease;
+}
+
+body.roadtrip-theme #quiz-container h2{
+  color:#354857;
+  text-transform: uppercase;
+}
+
+body.roadtrip-theme #quiz-container h3{
+  color:#D3BE48;
+  text-transform: uppercase;
+}
+
+body.roadtrip-theme #quiz-container {
+  background-color: #ffffff;
+  border: solid #D3BE48;
+  border-width: 2px;
+}
+
+body.roadtrip-theme #quiz-container .mini-title {
+  color:#354857;
+  text-transform: uppercase;
+  
+}
+
+body.roadtrip-theme #quiz-options li{
+  background-color: #86783A;
+  color:#ffffff;
+  
+}
+
+body.roadtrip-theme #quiz-options li:hover {
+  background: #706017;
+  color:#fff;
+}
+
+body.roadtrip-theme .correct-answer {
+  background-color: #D3BE48 !important;
+  color: #25323A!important;
+}
+
+body.roadtrip-theme {
+  --pop-color: #e7c81b;
+}
+
+
+body.roadtrip-theme .incorrect-answer {
+  background-color: #c5bb82d4!important;
+  color: #fff!important;
+}
+
+
+body.roadtrip-theme #next-btn{
+  background-color:#e7c81b;
+  color:#25323A;
+}
+
+body.roadtrip-theme #next-btn:hover{
+  background-color:#c9ad0d;
+}
+
+body.roadtrip-theme .answer-description{
+  background-color:#F3EDD3;
+  border-left:4px solid #e7c81b;
+  color:#25353F;
+}
+
+body.roadtrip-theme h1 {
+  color:#D3BE48;
+  
+}
+
+body.roadtrip-theme #quiz-progress {
+  color:#D3BE48;
+}
+
+
+body.roadtrip-theme #quiz-question {
+  color:#25353F;
+}
+
+body.roadtrip-theme #fade-in h2{
+  color:#314b5b;
+}
+
+body.roadtrip-theme .no-bullets{
+  color:#25353F;
+}
+
+body.roadtrip-theme .mini-title {
+  color:#354857;
+
+}
+
+
+body.roadtrip-theme #quiz-mode-select button {
+  background-color:#D3BE48;
+  color:#25323A;
+  
+}
+
+body.roadtrip-theme #quiz-mode-select button:hover {
+  background-color:#d9ba0c;
+  color:#25323A;
+  
+}
+
+
+body.roadtrip-theme .end-buttons button {
+  background-color:#D3BE48;
+  color:#25323A;
+  
+}
+
+body.roadtrip-theme .end-buttons button:hover {
+  background-color:#d9ba0c;
+  color:#25323A;
+  
+}
+
+body.roadtrip-theme .home-button {
+  background-color:#D3BE48;
+  color:#25323A;
+  
+}
+
+body.roadtrip-theme .home-button:hover {
+  background-color:#d9ba0c;
+  color:#25323A;
+  
+}
+
+
+
+
+
