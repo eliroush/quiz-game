@@ -10,7 +10,8 @@ const quizTitles = {
   plants: "Plants – Quiz",
   columbia: "Columbia, SC – Quiz",
   keylimepie: "Key Lime Pie Quiz",
-  strawberry: "Strawberry Shortcake Quiz"
+  strawberry: "Strawberry Shortcake Quiz",
+  burgers: "Grilling & Burgers Quiz"
   // Add more here as needed
 };
 

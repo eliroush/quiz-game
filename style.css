@@ -1109,3 +1109,154 @@ body.strawberry-theme .home-button:hover {
 }
 
 
+
+/* BURGERS THEME STYLING */
+
+
+body.burgers-theme {
+  background-color: #FCF0D0;
+  padding-top:5%;
+  color:#362f2b;
+}
+
+body.burgers-theme .back-button {
+  border-color: #DC7237;
+  color:#DC7237;
+}
+
+body.burgers-theme .back-button:hover {
+  background-color: #dc7137aa;
+  color:#DC7237;
+  transition: all 0.3s ease;
+}
+
+body.burgers-theme #quiz-container h2{
+  color:#935A30;
+  text-transform: uppercase;
+}
+
+body.burgers-theme #quiz-container h3{
+  color:#CC7138;
+  text-transform: uppercase;
+}
+
+body.burgers-theme #quiz-container {
+  background-color: #ffffff;
+  border: solid #AA5232;
+  border-width: 2px;
+}
+
+body.burgers-theme #quiz-container .mini-title {
+  color:#935A30;
+  text-transform: uppercase;
+  
+}
+
+body.burgers-theme #quiz-options li{
+  background-color: #935A30;
+  color:#ffffff;
+  
+}
+
+body.burgers-theme #quiz-options li:hover {
+  background: #C67F4F;
+  color:#fff;
+}
+
+body.burgers-theme .correct-answer {
+  background-color: #DC7237 !important;
+  color: #fff!important;
+}
+
+body.burgers-theme {
+  --pop-color: #DC7237;
+}
+
+
+body.burgers-theme .incorrect-answer {
+  background-color: #dda283!important;
+  color: #fff!important;
+}
+
+
+body.burgers-theme #next-btn{
+  background-color:#CC7138;
+}
+
+body.burgers-theme #next-btn:hover{
+  background-color:#de7331;
+}
+
+body.burgers-theme .answer-description{
+  background-color:#F1DCC8;
+  border-left:4px solid #CC7138;
+  color:#362f2b;
+}
+
+body.burgers-theme h1 {
+  color:#935A30;
+  
+}
+
+body.burgers-theme #quiz-progress {
+  color:#DC7237;
+}
+
+
+body.burgers-theme #quiz-question {
+  color:#362f2b;
+}
+
+body.burgers-theme #fade-in h2{
+  color:#935A30;
+}
+
+body.burgers-theme .no-bullets{
+  color:#362f2b;
+}
+
+body.burgers-theme .mini-title {
+  color:#935A30;
+
+}
+
+
+body.burgers-theme #quiz-mode-select button {
+  background-color:#CC7138;
+  color:white;
+  
+}
+
+body.burgers-theme #quiz-mode-select button:hover {
+  background-color:#df712c;
+  color:white;
+  
+}
+
+
+body.burgers-theme .end-buttons button {
+  background-color:#CC7138;
+  color:white;
+  
+}
+
+body.burgers-theme .end-buttons button:hover {
+  background-color:#df712c;
+  color:white;
+  
+}
+
+body.burgers-theme .home-button {
+  background-color:#CC7138;
+  color:white;
+  
+}
+
+body.burgers-theme .home-button:hover {
+  background-color:#df712c;
+  color:white;
+  
+}
+
+
+
