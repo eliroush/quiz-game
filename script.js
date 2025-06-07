@@ -12,7 +12,8 @@ const quizTitles = {
   keylimepie: "Key Lime Pie Quiz",
   strawberry: "Strawberry Shortcake Quiz",
   burgers: "Grilling & Burgers Quiz",
-  famousbeaches: "Famous Beaches Quiz"
+  famousbeaches: "Famous Beaches Quiz",
+  movies: "Summer Movie Classics Quiz",
   // Add more here as needed
 };
 
