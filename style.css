@@ -402,7 +402,7 @@ button:disabled {
 #next-btn {
   margin-top: 0px;
   margin-bottom:10px;
-  padding: 18px 24px;
+  padding: 1.2em 0.5em;
   width:100%;
   font-size:1.2rem;
   text-transform: uppercase;
@@ -432,8 +432,8 @@ button:disabled {
 
   #quiz-options li {
     list-style: none;
-    width: 98%;                /* keeps it from full screen */
-    padding: 1.2em 0.03em;
+    width: 100%;                /* keeps it from full screen */
+    padding: 1.2em 0.5em;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.3s ease;
@@ -1646,7 +1646,7 @@ body.movies-theme .answer-description{
 }
 
 body.movies-theme h1 {
-  color:#123836;
+  color:#D4D44D;
   
 }
 
