@@ -14,6 +14,12 @@ const quizTitles = {
   burgers: "Grilling & Burgers Quiz",
   famousbeaches: "Famous Beaches Quiz",
   movies: "Summer Movie Classics Quiz",
+  songs: "Summer Song Triva",
+  games: "Summer Games Triva",
+  summersky: "Summer Sky Triva",
+  summerdrinks: "Summer Drinks Triva",
+  summerstyle: "Summer Style Triva",
+  cooldown: "Beat the Heat Triva",
   // Add more here as needed
 };
 
