@@ -12,7 +12,7 @@
       font-family: 'Jost', sans-serif;
       background: #212B2C;
       margin: 0;
-      padding: 0;
+      padding:0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -218,6 +218,28 @@
       
     }
 
+    #loader-screen {
+  background-color: #ead17a;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#loader-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#lottie-animation {
+  width: 400px;
+  height: 400px;
+  
+}
+
     /* Add transition effect */
 .subcategory-group {
   overflow: hidden;
@@ -318,10 +340,23 @@
       .quiz-btn {
         width:95%;
       }
+
+      #lottie-animation {
+  width: 300px;
+  height: 300px;
+  
+}
+
+body { padding-bottom:50px;
+
+}
     }
   </style>
 </head>
 <body>
+  <div id="loader-screen">
+    <div id="lottie-animation"></div>
+  </div>
   <div class="titlebox">
     <h1 class="toptitle fade-in-load">Trivia Game Page</h1>
     <p class="fade-in-load">Choose from the categories below to see related quizzes!</p>
@@ -370,7 +405,7 @@
 
   <div class="quiz-group" id="culture">
     <h2>Pop Culture</h2>
-    <a href="quiz.html?quiz=movies" class="quiz-btn">Summer Movie Classics Trivia</a>
+    <a href="quiz.html?quiz=movies" class="quiz-btn">Summer Movies Trivia</a>
     <a href="quiz.html?quiz=songs" class="quiz-btn">Summer Song Trivia</a>
     <a href="quiz.html?quiz=games" class="quiz-btn">Summer Games Trivia</a>
     <a href="quiz.html?quiz=summerstyle" class="quiz-btn">Summer Style Trivia</a>
@@ -381,6 +416,8 @@
     <a href="quiz.html?quiz=plants" class="quiz-btn">Plants Can Hear You Chew</a>
   </div>
 </div>
+
+<script src="https://unpkg.com/lottie-web@5.12.0/build/player/lottie.min.js"></script>
 
 <script>
   // Selectors
@@ -461,6 +498,21 @@
     // Collapse Summer submenu on load
     summerSubcategories.classList.remove("open");
     summerToggleButton?.classList.remove("open");
+  });
+</script>
+
+<script>
+  const animation = lottie.loadAnimation({
+    container: document.getElementById('lottie-animation'),
+    renderer: 'svg',
+    loop: false,
+    autoplay: true,
+    path: 'loader.json' // adjust if different folder
+  });
+
+  animation.addEventListener('complete', () => {
+    const loader = document.getElementById('loader-screen');
+    loader.classList.add('fade-out');
   });
 </script>
 </body>

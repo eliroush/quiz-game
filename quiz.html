@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="page-wrapper" class="fade-in">
   <div id="quiz-start-screen">
     <h1 id="quiz-title"></h1>
   <div id="quiz-mode-select">
@@ -26,5 +27,12 @@
   <script src="script.js"></script>
   <div id="homelink">
     <a href="index.html" class="back-button">Back to Main Menu</a></div>
+  </div>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("page-wrapper").classList.add("loaded");
+    });
+  </script>
+
 </body>
 </html>

@@ -13,7 +13,7 @@ const quizTitles = {
   strawberry: "Strawberry Shortcake Quiz",
   burgers: "Grilling & Burgers Quiz",
   famousbeaches: "Famous Beaches Quiz",
-  movies: "Summer Movie Classics Quiz",
+  movies: "Summer Movies Quiz",
   songs: "Summer Song Triva",
   games: "Summer Games Triva",
   summersky: "Summer Sky Triva",
@@ -188,11 +188,56 @@ function showResult() {
 }
   
   
-  // 8. Start the quiz
+
+  function showResult() {
+    let feedback = '';
+    if (incorrectAnswers.length > 0) {
+      feedback += `<h3>Review</h3><ul class="no-bullets">`;
+      incorrectAnswers.forEach(item => {
+        feedback += `<li><strong>Q:</strong> ${item.question}<br>
+        <strong>Your Answer:</strong> ${item.userAnswer}<br>
+        <strong>Correct:</strong> ${item.correctAnswer}</li><br>`;
+      });
+      feedback += "</ul>";
+    }
+  
+    const resultHTML = `
+      <div class="fade-in" id="quiz-result-screen">
+        <h2>Quiz Complete!</h2>
+        <p>Your Score: ${score}/${currentData.length}</p>
+        ${feedback}
+        <div class="end-buttons">
+          <button onclick="location.reload()" class="play-again-button">Play Again</button>
+          <a href="index.html" class="home-button">Play More Quizzes</a>
+        </div>
+      </div>
+    `;
+  
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = resultHTML;
+    container.style.display = "block";
+    container.classList.add("show");
+  
+    document.getElementById("quiz-top-anchor").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+    // 8. Start the quiz
   function startQuizSelect(fullData) {
     function startQuiz(mode) {
       document.getElementById("quiz-mode-select").style.display = "none";
-      document.getElementById("quiz-container").style.display = "block";
+      const container = document.getElementById("quiz-container");
+      const startScreen = document.getElementById("quiz-start-screen");
+      
+      container.style.display = "block";
+
+      // Only add 'show' if it's not tied to fade-out animation for the entire quiz
+      if (!container.classList.contains("show")) {
+        container.classList.add("show");
+      }
+      
+      
+      // Optional: fade out the start screen
+      startScreen.classList.add("fade-out");
       document.getElementById("quiz-title").style.display = "none";
       // Prevent duplicate mini-titles
       const existingMini = document.querySelector(".mini-title");
