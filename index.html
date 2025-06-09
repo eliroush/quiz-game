@@ -144,15 +144,21 @@
       width: 100%;
       opacity: 0;
       transform: translateY(10px);
+      display: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-top: 0.5em;
     
     }
 
     
 
     .quiz-group.active {
-      display:flex;
+      display:flex !important;
       opacity: 1;
       transform: translateY(0);
+      overflow:visible;
+     
+     
     }
 
     .quiz-group h2 {
@@ -235,24 +241,23 @@
 }
 
 #lottie-animation {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   
 }
 
     /* Add transition effect */
-.subcategory-group {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.6s ease, opacity 0.6s ease;
-  opacity: 0;
-  margin-top: 1rem; /* spacing below other buttons */
+    .subcategory-group {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.5em;
+  margin-top: 1em;
 }
 
-/* Active/open state */
 .subcategory-group.open {
-  max-height: 500px; /* adjust depending on content */
-  opacity: 1;
+  display: flex;
 }
 
 /* fade it out */
@@ -262,13 +267,12 @@
   transition: opacity 0.3s ease;
 }
 
-#summer-toggle .arrow {
+.category-btn .arrow {
   display: inline-block;
   transition: transform 0.3s ease;
 }
 
-#summer-subcategories.open + #summer-toggle .arrow,
-#summer-toggle.open .arrow {
+.category-btn.open .arrow {
   transform: rotate(180deg);
 }
 
@@ -285,6 +289,18 @@
     .fade-in-load.loaded {
       opacity: 1;
       transform: translateY(0);
+}
+
+.quiz-group {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  margin-top:0;
 }
 
     .quiz-group.active a.quiz-btn {
@@ -342,8 +358,8 @@
       }
 
       #lottie-animation {
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   
 }
 
@@ -358,26 +374,34 @@ body { padding-bottom:50px;
     <div id="lottie-animation"></div>
   </div>
   <div class="titlebox">
-    <h1 class="toptitle fade-in-load">Trivia Game Page</h1>
+    <h1 class="toptitle fade-in-load">Games + Triva</h1>
     <p class="fade-in-load">Choose from the categories below to see related quizzes!</p>
   </div>
 
-  <div id="categories" class="fade-in-load">
-    <button class="category-btn" data-category="location">Location Quizzes</button>
+
+   
   
-    <!-- Inline toggle button like the others -->
-    <button class="category-btn" data-toggle="summer-subcategories" id="summer-toggle">Summer Series<span class="arrow">▼</span></button>
-  
-    <button class="category-btn" data-category="garden">Gardening & Nature</button>
-  </div>
-  
-  <!-- Subcategories -->
-  <div class="subcategory-group" id="summer-subcategories">
-    <button class="subcategory-btn" data-subcategory="summer-dish">The Summer Dish</button>
-    <button class="subcategory-btn" data-subcategory="explore">Explorations</button>
-    <button class="subcategory-btn" data-subcategory="culture">Pop Culture</button>
-    <!-- more subcategories -->
-  </div>
+    <div id="categories" class="fade-in-load">
+      <button class="category-btn" data-toggle="summer-subcategories" id="summer-toggle">Summer Series<span class="arrow">▼</span></button>
+      <button class="category-btn" data-toggle="quiz-subcategories" id="quiz-toggle">Quiz Games <span class="arrow">▼</span></button>
+      <button class="category-btn" data-toggle="match-subcategories" id="match-toggle">Matching Games <span class="arrow">▼</span></button>
+    </div>
+    
+   <!-- Subcategories -->
+<div class="subcategory-group" id="summer-subcategories">
+  <button class="subcategory-btn" data-subcategory="summer-dish">The Summer Dish</button>
+  <button class="subcategory-btn" data-subcategory="explore">Explorations</button>
+  <button class="subcategory-btn" data-subcategory="culture">Pop Culture</button>
+</div>
+
+<div class="subcategory-group" id="quiz-subcategories">
+  <button class="subcategory-btn" data-subcategory="location">Location Quizzes</button>
+  <button class="subcategory-btn" data-subcategory="garden">Gardening & Nature</button>
+</div>
+
+<div class="subcategory-group" id="match-subcategories">
+  <button class="subcategory-btn" data-subcategory="drink-match">Drink Match</button>
+</div>
 
   <!-- QUIZ DISPLAY AREA -->
 <div id="quiz-display-area">
@@ -417,6 +441,12 @@ body { padding-bottom:50px;
   </div>
 </div>
 
+<div class="quiz-group" id="drink-match">
+  <h2>Drink Match</h2>
+  <a href="match.html" class="quiz-btn">Full Drink Match Game</a>
+  <a href="match-lite.html" class="quiz-btn">Quick Match (Mobile Friendly)</a>
+</div>
+
 <script src="https://unpkg.com/lottie-web@5.12.0/build/player/lottie.min.js"></script>
 
 <script>
@@ -424,8 +454,8 @@ body { padding-bottom:50px;
   const categoryButtons = document.querySelectorAll(".category-btn");
   const subcategoryButtons = document.querySelectorAll(".subcategory-btn");
   const quizGroups = document.querySelectorAll(".quiz-group");
-  const summerSubcategories = document.getElementById("summer-subcategories");
-  const summerToggleButton = document.getElementById("summer-toggle");
+  const allToggleButtons = document.querySelectorAll(".category-btn[data-toggle]");
+  const allSubcategoryGroups = document.querySelectorAll(".subcategory-group");
 
   // Handle category button clicks
   categoryButtons.forEach(button => {
@@ -433,23 +463,29 @@ body { padding-bottom:50px;
     const category = button.getAttribute("data-category");
 
     button.addEventListener("click", () => {
-      // TOGGLE BUTTON: Summer Series
+      // TOGGLE BUTTON
       if (toggleTarget) {
-  const targetEl = document.getElementById(toggleTarget);
-  const isOpen = targetEl.classList.contains("open");
+        const targetEl = document.getElementById(toggleTarget);
+        const isOpen = targetEl.classList.contains("open");
 
-  // Hide all quiz groups
-  quizGroups.forEach(group => group.classList.remove("active"));
+        // Hide all quiz groups
+        quizGroups.forEach(group => group.classList.remove("active"));
 
-  // Close summer submenu if it's already open, or open it if closed
-  targetEl.classList.toggle("open", !isOpen);
-  button.classList.toggle("open", !isOpen);
+        // Close all dropdowns
+        allSubcategoryGroups.forEach(group => group.classList.remove("open"));
+        allToggleButtons.forEach(btn => btn.classList.remove("open"));
 
-  // Clear selected subcategory highlighting
-  subcategoryButtons.forEach(btn => btn.classList.remove("hide-when-selected"));
+        if (!isOpen) {
+          // Only open the clicked one if it wasn't already open
+          targetEl.classList.add("open");
+          button.classList.add("open");
+        }
 
-  return;
-}
+        // Clear selected subcategory highlighting
+        subcategoryButtons.forEach(btn => btn.classList.remove("hide-when-selected"));
+
+        return;
+      }
 
       // REGULAR CATEGORY BUTTON
       const selectedGroup = document.getElementById(category);
@@ -459,9 +495,8 @@ body { padding-bottom:50px;
       quizGroups.forEach(group => group.classList.remove("active"));
 
       // Always hide summer submenu + arrow
-      summerSubcategories.classList.remove("open");
-      summerToggleButton?.classList.remove("open");
-
+      allSubcategoryGroups.forEach(group => group.classList.remove("open"));
+      allToggleButtons.forEach(btn => btn.classList.remove("open"));
       // Toggle: if it was already open, hide it; otherwise, show it
       if (!isActive) {
         selectedGroup?.classList.add("active");
@@ -496,8 +531,8 @@ body { padding-bottom:50px;
     });
 
     // Collapse Summer submenu on load
-    summerSubcategories.classList.remove("open");
-    summerToggleButton?.classList.remove("open");
+    allSubcategoryGroups.forEach(group => group.classList.remove("open"));
+    allToggleButtons.forEach(btn => btn.classList.remove("open"));
   });
 </script>
 
