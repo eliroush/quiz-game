@@ -59,6 +59,19 @@
  
   
 }
+
+h2 {
+  color: #9dae00;
+  font-family: 'Jost', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  line-height:1.3em;
+  font-size: 1.5em;
+  margin-bottom:0.3rem;
+  text-transform: uppercase;
+
+}
+
 .title-wrapper {
   width: 100%;
   display: flex;
@@ -162,12 +175,53 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   transform: scale(0);
   animation: ripple-effect 0.6s ease-out;
   pointer-events: none;
   z-index: 1;
+}
+
+#match-complete {
+  display: none;
+  opacity: 0;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#match-complete.show {
+  display: block;
+  animation: fadeInScale 0.6s ease forwards;
+
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#match-complete button {
+  margin: 0.3rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #8f9f00;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 1rem;
+  
+}
+
+#match-complete button:hover {
+  background-color: #a7ba02;
 }
 
 @keyframes ripple-effect {
@@ -190,6 +244,11 @@
     <h1>Beverage Matching Game</h1>
   </div>
   <div class="game-board" id="gameBoard"></div>
+  <div id="match-complete" class="fade-in-complete">
+    <h2>Match Complete!</h2>
+    <button onclick="location.reload()">Play Again</button>
+    <button onclick="window.location.href='index.html'">Go to Homepage</button>
+  </div>
 
   <script>
     const images = [
@@ -269,11 +328,21 @@
     lockBoard = true;
 
     if (first.dataset.image === second.dataset.image) {
-      first.classList.add('matched');
-      second.classList.add('matched');
-      flippedCards = [];
-      lockBoard = false;
-    } else {
+  first.classList.add('matched');
+  second.classList.add('matched');
+  flippedCards = [];
+  lockBoard = false;
+
+  // ✅ Check if all cards are matched
+  const allMatched = document.querySelectorAll('.matched').length === document.querySelectorAll('.card').length;
+  if (allMatched) {
+    document.getElementById('match-complete').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('match-complete').classList.add('show');
+    }, 50); // slight delay to trigger fade-in animation
+  }
+}
+ else {
       setTimeout(() => {
         first.classList.remove('flipped');
         second.classList.remove('flipped');

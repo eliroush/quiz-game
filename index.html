@@ -19,6 +19,7 @@
       justify-content: center;
       min-height: 100vh;
       text-align: center;
+      padding-bottom:100px;
     }
 
     h1 {
@@ -34,6 +35,8 @@
     h2 {
       color:#F2D06C;
     }
+
+
 
     .titlebox {
       display: flex;
@@ -122,6 +125,21 @@
   
 }
 
+
+.subcategory-title {
+  background-color: #f6c83f;
+  font-family: 'Jost', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #212B2C;;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  width:85%;
+  border-radius:8px;
+  padding: 0.5em 0;
+}
+
+
     #quizzes {
       display: flex;
       flex-direction: column;
@@ -184,9 +202,9 @@
       width: 70%;
       padding: 1em 2em;
       margin: 0.5em auto;
-      background-color: transparent;
-      border: 2px solid #ffeeba;
-      color: #ffeeba;
+      background-color: #1b2424;
+      border: 2px solid #faba0a;
+      color: #faba0a;
       border-radius: 8px;
       text-decoration: none;
       text-transform: uppercase;
@@ -199,10 +217,12 @@
     }
 
     .quiz-btn:hover {
-      background-color: #ffeeba;
-      color: #212B2C;
-      border-color:#ffeeba;
+      background-color:#5640046e;
+  color:#faba0a;
+  border-color:#faba0a;
     }
+
+
     .subcategory-btn {
       background-color:transparent;
       color:#ffecb4;
@@ -278,7 +298,7 @@
 
     .quiz-group  h2 {
       text-transform:uppercase; 
-      color:#ffeeba;}
+      color:#eaaf07;}
 
     .fade-in-load {
       opacity: 0;
@@ -318,6 +338,13 @@
     .quiz-group.active a.quiz-btn:nth-child(4) {
       animation-delay: 0.3s;
 }
+
+
+
+
+
+
+
 /* Add additional buttons when needed */
 
 @keyframes fadeSlideIn {
@@ -389,17 +416,20 @@ body { padding-bottom:50px;
     
    <!-- Subcategories -->
 <div class="subcategory-group" id="summer-subcategories">
+  <h2 class="subcategory-title">Summer Series</h2>
   <button class="subcategory-btn" data-subcategory="summer-dish">The Summer Dish</button>
   <button class="subcategory-btn" data-subcategory="explore">Explorations</button>
   <button class="subcategory-btn" data-subcategory="culture">Pop Culture</button>
 </div>
 
 <div class="subcategory-group" id="quiz-subcategories">
+  <h2 class="subcategory-title">Quiz Games</h2>
   <button class="subcategory-btn" data-subcategory="location">Location Quizzes</button>
   <button class="subcategory-btn" data-subcategory="garden">Gardening & Nature</button>
 </div>
 
 <div class="subcategory-group" id="match-subcategories">
+  <h2 class="subcategory-title">Matching Games</h2>
   <button class="subcategory-btn" data-subcategory="drink-match">Drink Match</button>
 </div>
 
