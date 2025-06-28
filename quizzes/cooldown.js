@@ -181,6 +181,17 @@ description: "Arched foundations allowed air to flow beneath the home, cooling t
     ],
     answer: "It reduces focus and decision-making",
     description: "High temperatures divert blood flow away from the brain and toward the skin, impairing memory, concentration, and overall mental clarity."
+  },
+  {
+    question: "How did Charleston’s 'sideways homes' help residents stay cool in the summer?",
+    options: [
+      "They used white roofs to reflect sunlight",
+      "They had deep basements for cool air storage",
+      "They were built with porches (piazzas) running along the side to catch breezes",
+      "They had water channels running under the floors"
+    ],
+    answer: "They were built with porches (piazzas) running along the side to catch breezes",
+    description: "Charleston homes were often built with the narrow side facing the street and long shaded porches—called piazzas—running along the length of the house. These porches caught sea breezes and offered shaded outdoor space in the Southern heat. Bonus: the design also reduced street frontage, which helped lower property taxes!"
   }
 
 ];

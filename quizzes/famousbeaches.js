@@ -189,6 +189,39 @@ const quizData = [
     ],
     answer: "It’s Georgia’s oldest and tallest lighthouse",
     description: "Dating back to 1736, the Tybee Island Light Station is one of the most intact historic lighthouses in the country—and you can still climb it today!"
-  }
+  },
 
+  {
+    question: "On what beach have some beachgoers reported finding small fragments of pottery or colonial era relics?",
+    options: ["Myrtle Beach", "Ocean City Beach", "Venice Beach", "St. Augustine Beaches"],
+    answer: "St. Augustine Beaches",
+    description: "Clearwater’s sand is made of fine quartz particles washed down from the Appalachian Mountains over thousands of years."
+  },
+
+  {
+    question: "Which beach features a castle inspired by Moorish architecture and has open-air studios that were used for sculpting large animal statues?",
+    options: ["Virginia Beach", "Clearwater Beach", "Wharariki Beach", "Huntington Beach State Park"],
+    answer: "Huntington Beach State Park",
+    description: "Atalaya Castle is situated on Huntington Beach State Park across from Brookgreen Gardens. It was the winter home of philanthropist Archer Huntington and sculptor Anna Hyatt Huntington in the 1930s. Today, the castle hosts an annual juried art festival, drawing creators from across the Southeast for a weekend of beachside creativity. This photo shows an open-air sculptural courtyard at Brookgreen Gardens and features a long reflecting pool framed by white brick archways, symmetrical plantings, and a central bronze statue. The open-air design, with its palm trees and rhythmic arches, echoes the architectural details of nearby Atalaya Castle — both created by the Huntingtons in the 1930s. ",
+    descriptionImage: "images/brookgreen.jpg"
+  },
+
+  {
+    question: "True or False - The water in waves travels very far across the ocean until they hit shallow water and break.",
+    options: ["True", "False"],
+    answer: "False",
+    description: "In most ocean waves, water doesn’t travel far — the energy does. As waves roll in, water molecules move in circular orbits, rising and falling but mostly staying in place. It’s the wave energy that travels across the sea until it hits shallow water — then the wave slows, builds height, and breaks."
+  },
+
+  {
+    question: "What are tide clocks based on?",
+    options: [
+      "Changes in ocean currents that cause tides",
+      "Seasonal shifts in temperature and weather",
+      "The position of the moon in its orbit",
+      "The time of year and lunar phases"
+    ],
+    answer: "The position of the moon in its orbit",
+    description: "Tide clocks follow the moon’s gravitational pull, which causes tides on a 12 hour and 25 minute cycle as the moon returns to the same position overhead."
+  }
 ];
