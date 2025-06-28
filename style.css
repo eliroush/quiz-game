@@ -376,8 +376,12 @@ a.back-button:hover{
   text-align: center;
 }
 
+p.fade-in-load.loaded{
+  color:#2a2a2a;
+}
+
 @media (max-width: 768px) {
-  body {
+  html, body {
     overflow-x: hidden;
   }
 }
@@ -388,14 +392,14 @@ a.back-button:hover{
   
   body {
     font-family: 'Jost', sans-serif;
-    background: #f5f9f6;
+    background: #2a2a2a;
     padding: 5% 1%;
     color: #333;
     justify-content:start;
     align-items:center;
     
   }
-  body {
+  html, body {
     overflow-x: hidden;
   }
 
@@ -531,13 +535,17 @@ a.back-button:hover{
 
   body {
     font-family: 'Jost', sans-serif;
-    background: #f5f9f6;
+    background: #2a2a2a;
     padding: 2% 2%;
     color: #333;
     justify-content:center;
     align-items:center;
    
     
+  }
+
+  html, body {
+    overflow-x: hidden;
   }
 
   .back-button {
@@ -654,6 +662,10 @@ a.back-button:hover{
   }
 .back-button {
   width: 65%;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 }
