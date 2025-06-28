@@ -99,5 +99,96 @@ const quizData = [
     options: ["Ocean City, MD", "Clearwater Beach, FL", "Tybee Island, GA", "Daytona Beach, FL"],
     answer: "Ocean City, MD",
     description: "Ocean City bans eating/drinking on the sand from 10am–5:30pm unless in designated food zones."
+  },
+  {
+    question: "Who is known as the 'Father of Modern Surfing'?",
+    options: ["Kelly Slater", "Duke Kahanamoku", "Laird Hamilton", "Jack LaLanne"],
+    answer: "Duke Kahanamoku",
+    description: "Duke Kahanamoku popularized surfing in the early 1900s and won five Olympic medals in swimming."
+  },
+  {
+    question: "What natural feature creates the pink sand at Bermuda’s Horseshoe Bay?",
+    options: ["Crushed coral", "Volcanic ash", "Seashell dust", "Foraminifera"],
+    answer: "Foraminifera",
+    description: "Tiny sea creatures called Foraminifera have reddish shells that mix with white sand to give the beach its pink hue."
+  },
+  {
+    question: "What is illegal to take home from Punaluʻu Beach in Hawaii?",
+    options: ["Lava rocks", "Coral", "Black sand", "Seaweed"],
+    answer: "Black sand",
+    description: "Punaluʻu Beach is protected—removing its distinctive volcanic black sand is illegal."
+  },
+  {
+    question: "What marine animal is frequently seen sunbathing on Punaluʻu Beach?",
+    options: ["Sea otters", "Sea lions", "Hawaiian monk seals", "Green sea turtles"],
+    answer: "Green sea turtles",
+    description: "Hawaiian green sea turtles (honu) often rest on the beach, but they’re protected—look, don’t touch!"
+  },
+  {
+    question: "Why do some call the Outer Banks the 'Graveyard of the Atlantic'?",
+    options: ["Ghost sightings", "Buried pirate treasure", "Numerous shipwrecks", "Haunted lighthouses"],
+    answer: "Numerous shipwrecks",
+    description: "More than 3,000 shipwrecks have occurred off the Outer Banks due to storms, war, and shifting sands."
+  },
+  {
+    question: "Which California beach has purple sand after storms?",
+    options: ["Pfeiffer Beach", "Glass Beach", "Huntington Beach", "Laguna Beach"],
+    answer: "Pfeiffer Beach",
+    description: "Storms wash manganese garnet down from cliffs, creating streaks of purple sand at Pfeiffer Beach."
+  },
+  {
+    question: "Which island has a beach with red sand caused by iron-rich lava rock?",
+    options: ["Maui", "Oahu", "Lanai", "Molokai"],
+    answer: "Maui",
+    description: "Kaihalulu Beach on Maui glows red due to iron-rich volcanic rock surrounding the cove."
+  },
+  {
+    question: "Which historic Georgia island limits development to just 35% to preserve nature?",
+    options: ["St. Simons Island", "Tybee Island", "Jekyll Island", "Sapelo Island"],
+    answer: "Jekyll Island",
+    description: "To protect its ecosystems, Jekyll Island allows only 35% of the land to be developed."
+  },
+  {
+    question: "Where can you find a real sunken pirate city beneath the sea?",
+    options: ["Nassau", "Port Royal", "Tortuga", "Cozumel"],
+    answer: "Port Royal",
+    description: "Port Royal, Jamaica sank in 1692 after an earthquake and tsunami — much of it still lies underwater."
+  },
+  {
+    question: "What iconic Myrtle Beach attraction closed in 2006 but lives on in local memories?",
+    options: ["The Pavilion Amusement Park", "WonderWorks", "SkyWheel", "Ripley’s Aquarium"],
+    answer: "The Pavilion Amusement Park",
+    description: "The Pavilion Amusement Park was a beloved Myrtle Beach destination with a carousel, arcade, and classic summer vibes until its closure in 2006."
+  },
+  {
+    question: "Which legendary Virginia Beach hotel once hosted presidents and celebrities?",
+    options: ["The Boardwalk Inn", "Cavalier Hotel", "Oceanfront Lodge", "Seaside Palace"],
+    answer: "Cavalier Hotel",
+    description: "The Cavalier Hotel, built in 1927, is a Virginia Beach landmark known for its glamorous history and famous guests, from presidents to rock stars."
+  },
+  {
+    question: "What giant statue stands at the heart of Virginia Beach’s boardwalk?",
+    options: ["Poseidon", "Neptune", "Zeus", "Triton"],
+    answer: "Neptune",
+    description: "The 34-foot bronze statue of King Neptune celebrates Virginia Beach’s coastal heritage and anchors the annual Neptune Festival."
+  },
+  {
+    question: "What makes Clearwater Beach’s sand so soft and white?",
+    options: ["Crushed coral", "Pulverized shells", "Quartz from the mountains", "Artificial sand replenishment"],
+    answer: "Quartz from the mountains",
+    description: "Clearwater’s sand is made of fine quartz particles washed down from the Appalachian Mountains over thousands of years."
+  },
+
+  {
+    question: "What makes Tybee Island’s lighthouse especially notable?",
+    options: [
+      "It’s the tallest wooden structure in the U.S.",
+      "It’s built on a coral reef",
+      "It’s Georgia’s oldest and tallest lighthouse",
+      "It was destroyed in the Civil War"
+    ],
+    answer: "It’s Georgia’s oldest and tallest lighthouse",
+    description: "Dating back to 1736, the Tybee Island Light Station is one of the most intact historic lighthouses in the country—and you can still climb it today!"
   }
+
 ];
