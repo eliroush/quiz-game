@@ -20,6 +20,7 @@ const quizTitles = {
   summerdrinks: "Summer Drinks Triva",
   summerstyle: "Summer Style Triva",
   cooldown: "Beat the Heat Triva",
+  backtoschool: "Back to School Triva",
   // Add more here as needed
 };
 
