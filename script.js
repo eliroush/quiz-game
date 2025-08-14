@@ -21,6 +21,7 @@ const quizTitles = {
   summerstyle: "Summer Style Triva",
   cooldown: "Beat the Heat Triva",
   backtoschool: "Back to School Triva",
+  secondsummer: "Second Summer Trivia",
   // Add more here as needed
 };
 
