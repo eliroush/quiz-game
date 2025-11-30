@@ -22,9 +22,9 @@
   font-family: 'Jost', sans-serif;
   font-weight: 700;
   text-align: center;
-  line-height:1.3em;
+  line-height:1.2em;
   font-size: 1.5em;
-  margin-bottom:0.5em;
+  margin-bottom:0.35em;
 
 }
 
@@ -35,7 +35,7 @@ h2 {
   text-align: center;
   line-height:1.3em;
   font-size: 1.5em;
-  margin-bottom:0.3rem;
+  margin-bottom:0.1rem;
   text-transform: uppercase;
 
 }
@@ -45,11 +45,34 @@ h2 {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .title-wrapper h1 {
   text-align: center;
  
+}
+
+#timerDisplay {
+  margin-top: 0.1rem;
+  margin-bottom:0.9rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 700;
+  color: #4a302b;
+  background: #ffe8d8;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #ff634785;
+  border-radius: 20px;
+  box-shadow: 0 0 3px 1px #4a302b1f;
+}
+
+#final-time {
+  font-family:'Jost';
+  color:#ff6347;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0.1rem 0 0.35rem;
 }
 
     .game-board {
@@ -222,16 +245,13 @@ h2 {
 
     <div class="title-wrapper">
         <h1>Beverage Matching Game</h1>
-      </div>
-      <div id="match-complete" class="fade-in-complete">
-        <h2>Match Complete!</h2>
-        <button onclick="location.reload()">Play Again</button>
-        <button onclick="window.location.href='index.html'">Go to Homepage</button>
+        <div id="timerDisplay">Time: 00:00</div>
       </div>
   <div class="game-board" id="gameBoard"></div>
 
   <div id="match-complete" class="fade-in-complete">
     <h2>Match Complete!</h2>
+    <p id="final-time"></p>
     <button onclick="location.reload()">Play Again</button>
     <button onclick="window.location.href='index.html'">Go to Homepage</button>
   </div>
@@ -252,8 +272,35 @@ h2 {
     ];
 
     const gameBoard = document.getElementById('gameBoard');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const finalTimeDisplay = document.getElementById('final-time');
     let flippedCards = [];
     let lockBoard = false;
+    let timerInterval = null;
+    let timerStart = null;
+    let timerRunning = false;
+
+    function formatTime(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+      const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+      return `${minutes}:${seconds}`;
+    }
+
+    function startTimer() {
+      timerStart = Date.now();
+      timerRunning = true;
+      timerInterval = setInterval(() => {
+        const elapsedSeconds = Math.floor((Date.now() - timerStart) / 1000);
+        timerDisplay.textContent = `Time: ${formatTime(elapsedSeconds)}`;
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+      }
+      timerRunning = false;
+    }
 
     function createCard(imageName) {
       const card = document.createElement('div');
@@ -285,6 +332,10 @@ h2 {
 
     function handleFlip(card, event) {
   if (lockBoard || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+  if (!timerRunning) {
+    startTimer();
+  }
 
   card.classList.add('flipped');
 
@@ -318,6 +369,9 @@ h2 {
   // ✅ Check if all cards are matched
   const allMatched = document.querySelectorAll('.matched').length === document.querySelectorAll('.card').length;
   if (allMatched) {
+    stopTimer();
+    const elapsedSeconds = Math.floor((Date.now() - timerStart) / 1000);
+    finalTimeDisplay.textContent = `Your time: ${formatTime(elapsedSeconds)}`;
     document.getElementById('match-complete').style.display = 'block';
     setTimeout(() => {
       document.getElementById('match-complete').classList.add('show');
