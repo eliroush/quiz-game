@@ -12,8 +12,8 @@
   <div id="quiz-start-screen">
     <h1 id="quiz-title"></h1>
   <div id="quiz-mode-select">
-  <button onclick="startQuiz('quick')">Quick Quiz</button>
-  <button onclick="startQuiz('full')">Full Quiz</button>
+  <button class="glass-btn" onclick="startQuiz('quick')">Quick Quiz</button>
+  <button class="glass-btn" onclick="startQuiz('full')">Full Quiz</button>
   </div>
 </div>
     <div id="quiz-top-anchor"></div>
@@ -21,12 +21,12 @@
     <div id="quiz-progress"></div>
     <div id="quiz-question"></div>
     <ul id="quiz-options"></ul>
-    <button id="next-btn">Next</button>
+    <button id="next-btn" class="glass-btn">Next</button>
     <div id="result" class="hidden"></div>
   </div>
   <script src="script.js"></script>
   <div id="homelink">
-    <a href="index.html" class="back-button">Back to Main Menu</a></div>
+    <a href="index.html" class="back-button glass-btn">Back to Main Menu</a></div>
   </div>
   <script>
     window.addEventListener("DOMContentLoaded", () => {
