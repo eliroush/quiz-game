@@ -320,6 +320,7 @@
       max-height: 60vh;
       overflow-y: auto;
       padding-right: 4px;
+      box-sizing: border-box;
     }
 
     .word-list li {
@@ -330,6 +331,9 @@
       font-size: 0.9rem;
       color: #444;
       font-weight:600;
+      line-height: 1.35;
+      word-break: break-word;
+      white-space: normal;
     }
 
     .instructions {
@@ -404,8 +408,12 @@
 
 
     @media (max-width: 700px) {
+      .word-list {
+        max-height: 55vh;
+      }
       .word-list li{
-        font-size: 1.1rem;
+        font-size: 0.9rem;
+        line-height: 1.35rem;
       }
 
     }
