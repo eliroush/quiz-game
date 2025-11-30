@@ -131,7 +131,7 @@ h1#quiz-title{
 }
 
 #quiz-progress {
-  color: #a1a15b; /* or any custom color */
+  color: #cbcb4d; /* or any custom color */
   font-weight: bold;
   margin-bottom: 10px;
   font-size: 1rem;
@@ -204,7 +204,7 @@ h1#quiz-title{
   font-size:1.2em;
   letter-spacing:0.03em;
   font-weight:500;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(248, 245, 144, 0.216);
   color: #2a2a2a;
   border: 1px solid transparent;
   box-shadow: 0 8px 18px rgba(0,0,0,0.12);
@@ -329,15 +329,15 @@ a.home-button:hover{
 }
 
 .correct-answer {
-  background-color: #a3a320c9 !important; /* default correct highlight */
+  background-color: #b6b610d7 !important; /* default correct highlight */
   color: #fefaf4 !important;
   text-transform:uppercase!important;
   
 }
 
 .incorrect-answer {
-  background-color: #d6dac772!important; /* default incorrect highlight */
-  color: #d8dda8c0!important;
+  background-color: #676b4b47!important; /* default incorrect highlight */
+  color: #e0e989c0!important;
   text-decoration:line-through #8383835d!important;
   font-style:italic!important;
   text-decoration:line-through!important;
