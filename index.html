@@ -8,9 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="triviafavicon.png" type="image/png">
   <style>
+    html {
+      min-height: 100%;
+      background: radial-gradient(circle at 20% 20%, #898b1e 0, #8d9230 30%, #dfdf88 70%);
+      background-attachment: fixed;
+    }
+
     body {
       font-family: 'Jost', sans-serif;
-      background: #FEFAF4;
+      background: radial-gradient(circle at 20% 20%, #80821e85 0, #aaac43ca 30%, #c8c8407c 70%);
       margin: 0;
       padding:0;
       display: flex;
@@ -20,6 +26,7 @@
       min-height: 100vh;
       text-align: center;
       padding-bottom:100px;
+      background-attachment: fixed;
     }
 
     h1 {
@@ -30,6 +37,36 @@
       font-weight:600;
       text-transform: uppercase;
       font-family:'Jost', sans-serif;
+    }
+
+    .title-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 35px;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid transparent;
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    .title-chip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.4px;
+      border-radius: 14px;
+      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
     }
 
     h2 {
@@ -48,12 +85,82 @@
       height: auto;
     }
 
+    .glass-shell {
+      position: relative;
+      width: 92%;
+      max-width: 1000px;
+      margin: 16px auto;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid transparent;
+      border-radius: 18px;
+      backdrop-filter: blur(10px) saturate(130%);
+      -webkit-backdrop-filter: blur(10px) saturate(130%);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .glass-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.15);
+      opacity: 1;
+      z-index: -1;
+      filter: blur(2px);
+    }
+
+    .glass-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 18px;
+      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
     p {
       font-size: 1.4em;
       color: #2a2a2a2a;
       margin-bottom: 5%;
       font-weight: 400;
       letter-spacing: 0.1em;
+    }
+
+    .intro-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 25px;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid transparent;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    .intro-chip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 12px;
+      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
     }
 
     .quiz-links {
@@ -81,33 +188,56 @@
     #categories {
       display: flex;
       justify-content: center;
-      gap: 1em;
-      margin-bottom: 2em;
-      width:95%;
+      align-items: stretch;
+      gap: 14px;
+      margin: 0 auto 2em;
+      width: 100%;
+      max-width: 1000px;
       flex-wrap: wrap;
     }
 
     .category-btn {
-      background-color: transparent;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
       color: #2a2a2a;
-      border: none;
-      border-radius:0;
-      padding: 0.6em 2.8em 0.2em 2.8em;
+      border: 1px solid transparent;
+      border-radius:14px;
+      padding: 0.8em 2.8em;
       font-size: 1em;
-      border-bottom: 1px solid #2a2a2a;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
       text-transform: uppercase;
       font-weight: 400;
       letter-spacing: 0.09em;
-      width:100%;
-      max-width:400px;
-      margin-bottom:20px;
+      flex: 1 1 300px;
+      min-width: 260px;
+      max-width: 360px;
+      margin-bottom: 0;
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
     }
 
     .category-btn:hover {
-      
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.12);
       color: #a1a15b;
+    }
+
+    .category-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.4px;
+      border-radius: 14px;
+      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
     }
 
     .category-btn.dropdown-toggle {
@@ -200,14 +330,16 @@
 }
 
     .quiz-btn {
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 40%;
       padding: 1em 2em;
       margin: 0.5em auto;
-      background-color:#2a2a2a;
-      border: 2px none;
+      background: rgba(42, 42, 42, 0.45);
+      border: 1px solid transparent;
       color: #fff;
       border-radius:12px;
       text-transform: uppercase;
@@ -215,22 +347,41 @@
       font-size: 1.1em;
       letter-spacing: 0.06em;
       box-sizing: border-box;
-      transition: background 0.3s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
       text-align: center;
       text-decoration: none;
+      backdrop-filter: blur(6px) saturate(130%);
+      -webkit-backdrop-filter: blur(6px) saturate(130%);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
     }
 
     .quiz-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.14);
       background-color:#414040;
-   
-    
-  
+    }
+
+    .quiz-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 12px;
+      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
     }
 
 
     .subcategory-btn {
-      background-color:#929244;
-      color:#fff;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      color:#2a2a2a;
       font-size:1.1em;
       font-weight:600;
       text-transform: uppercase;
@@ -238,12 +389,31 @@
       border-radius:12px;
       padding:1em 2em;
       width:40%;
+      border: 1px solid transparent;
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .subcategory-btn:hover {
-      background-color:#9d9d45;
-      
-      
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.12);
+    }
+
+    .subcategory-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 12px;
+      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
     }
 
     .subcategory-btn.active{
@@ -360,9 +530,9 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
+    }
 
-    @media (max-width: 600px) {
+@media (max-width: 600px) {
       .toptitle {
         margin-bottom: 0.05em;
         font-size: 2em;
@@ -377,23 +547,25 @@
         flex-direction: column;
         align-items: center;
         margin-top: 0.5em;
-        width: 95%;
+        width: 100%;
+        padding: 0 12px;
+        box-sizing: border-box;
         margin-bottom:0.03em;
       }
 
       .category-btn {
-        width: 95%;
+        width: 100%;
       }
 
       .quiz-group {
-        width: 95%;
+        width: 100%;
       }
       .quiz-btn {
-        width:95%;
+        width:100%;
       }
 
       .subcategory-btn{
-        width:95%;
+        width:100%;
       }
 
       #lottie-animation {
@@ -405,6 +577,34 @@
 body { padding-bottom:50px;
 
 }
+
+.glass-shell {
+  width: calc(100% - 40px);
+  margin: 20px auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .glass-shell {
+    width: calc(100% - 64px);
+    margin: 18px auto;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 600px) {
+  .glass-shell {
+    width: calc(100% - 32px);
+    margin: 16px auto;
+    padding: 14px;
+  }
+}
+
+#categories {
+  padding: 0 10px;
+}
     }
   </style>
 </head>
@@ -413,18 +613,18 @@ body { padding-bottom:50px;
     <div id="lottie-animation"></div>
   </div>
   <div class="titlebox">
-    <h1 class="toptitle fade-in-load">Games + Triva</h1>
-    <p class="fade-in-load">Choose from the categories below to see related quizzes!</p>
+    <h1 class="toptitle fade-in-load title-chip">Games + Triva</h1>
+    <p class="fade-in-load intro-chip">Choose from the categories below to see related quizzes!</p>
   </div>
 
 
-   
-  
-    <div id="categories" class="fade-in-load">
+  <div class="glass-shell fade-in-load">
+    <div id="categories">
       <button class="category-btn" data-toggle="summer-subcategories" id="summer-toggle">Summer Series<span class="arrow">▼</span></button>
       <button class="category-btn" data-toggle="fall-subcategories" id="fall-toggle">Fall Series<span class="arrow">▼</span></button>
       <button class="category-btn" data-toggle="quiz-subcategories" id="quiz-toggle">Quiz Games <span class="arrow">▼</span></button>
       <button class="category-btn" data-toggle="match-subcategories" id="match-toggle">Matching Games <span class="arrow">▼</span></button>
+       <button class="category-btn" data-toggle="word-subcategories" id="word-toggle">Word Games <span class="arrow">▼</span></button>
     </div>
     
    <!-- Subcategories -->
@@ -449,6 +649,11 @@ body { padding-bottom:50px;
 <div class="subcategory-group" id="match-subcategories">
   <h2 class="subcategory-title">Matching Games</h2>
   <button class="subcategory-btn" data-subcategory="drink-match">Drink Match</button>
+</div>
+
+<div class="subcategory-group" id="word-subcategories">
+  <h2 class="subcategory-title">Word Games</h2>
+  <button class="subcategory-btn" data-subcategory="word-builder">Word Games</button>
 </div>
 
   <!-- QUIZ DISPLAY AREA -->
@@ -501,6 +706,14 @@ body { padding-bottom:50px;
   <a href="match.html" class="quiz-btn">Full Drink Match Game</a>
   <a href="match-lite.html" class="quiz-btn">Quick Match (Mobile Friendly)</a>
 </div>
+
+<div class="quiz-group" id="word-builder">
+  <h2>Word Builders</h2>
+  <a href="wordgame.html" class="quiz-btn">Multi Theme Select Builder</a>
+ 
+</div>
+
+</div> <!-- end glass-shell -->
 
 <script src="https://unpkg.com/lottie-web@5.12.0/build/player/lottie.min.js"></script>
 
