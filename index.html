@@ -40,10 +40,12 @@
     }
 
     .title-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 35px;
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      box-sizing: border-box;
+      text-align: center;
+      padding: 12px 16px;
       background: rgba(255, 255, 255, 0.4);
       border: 1px solid transparent;
       border-radius: 14px;
@@ -135,9 +137,12 @@
     }
 
     .intro-chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 25px;
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      box-sizing: border-box;
+      text-align: center;
+      padding: 10px 14px;
       background: rgba(255, 255, 255, 0.4);
       border: 1px solid transparent;
       border-radius: 12px;
@@ -222,7 +227,7 @@
     .category-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 26px rgba(0,0,0,0.12);
-      color: #a1a15b;
+      color: #77770b;
     }
 
     .category-btn::after {
@@ -338,9 +343,9 @@
       width: 40%;
       padding: 1em 2em;
       margin: 0.5em auto;
-      background: rgba(42, 42, 42, 0.45);
+      background: rgba(255, 255, 255, 0.1);
       border: 1px solid transparent;
-      color: #fff;
+      color: #2a2a2a;
       border-radius:12px;
       text-transform: uppercase;
       font-weight: 400;
@@ -358,7 +363,7 @@
     .quiz-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 26px rgba(0,0,0,0.14);
-      background-color:#414040;
+      background-color: rgba(255, 255, 255, 0.18);
     }
 
     .quiz-btn::after {
@@ -592,19 +597,66 @@ body { padding-bottom:50px;
     padding: 16px;
     box-sizing: border-box;
   }
+
+  .titlebox {
+    width: calc(100% - 64px);
+    max-width: 1000px;
+    margin: 0 auto 0.6em;
+  }
+
+  .title-chip,
+  .intro-chip {
+    max-width: none;
+    width: 100%;
+  }
+
+  #categories {
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .category-btn {
+    width: 100%;
+    max-width: 600px;
+    min-width: 0;
+    box-sizing: border-box;
+  }
 }
 
 @media (max-width: 600px) {
   .glass-shell {
-    width: calc(100% - 32px);
-    margin: 16px auto;
+    width: calc(100% - 20px);
+    margin: 14px auto;
     padding: 14px;
+    box-sizing: border-box;
+  }
+
+  .titlebox {
+    width: calc(100% - 20px);
+    max-width: 900px;
+    margin: 0 auto 0.4em;
+  }
+
+  #categories {
+    padding: 0 6px;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .category-btn {
+    flex: 0 0 100%;
+    min-width: unset;
+    max-width: none;
+    width: 100%;
   }
 }
 
-#categories {
-  padding: 0 10px;
-}
+  #categories {
+    padding: 0 10px;
+  }
     }
   </style>
 </head>
@@ -724,6 +776,12 @@ body { padding-bottom:50px;
   const quizGroups = document.querySelectorAll(".quiz-group");
   const allToggleButtons = document.querySelectorAll(".category-btn[data-toggle]");
   const allSubcategoryGroups = document.querySelectorAll(".subcategory-group");
+  const scrollOptions = { behavior: "smooth", block: "start", inline: "nearest" };
+
+  function scrollToElement(el) {
+    if (!el) return;
+    requestAnimationFrame(() => el.scrollIntoView(scrollOptions));
+  }
 
   // Handle category button clicks
   categoryButtons.forEach(button => {
@@ -747,6 +805,7 @@ body { padding-bottom:50px;
           // Only open the clicked one if it wasn't already open
           targetEl.classList.add("open");
           button.classList.add("open");
+          scrollToElement(targetEl);
         }
 
         // Clear selected subcategory highlighting
@@ -768,6 +827,7 @@ body { padding-bottom:50px;
       // Toggle: if it was already open, hide it; otherwise, show it
       if (!isActive) {
         selectedGroup?.classList.add("active");
+        scrollToElement(selectedGroup);
       }
     });
   });
@@ -783,6 +843,7 @@ body { padding-bottom:50px;
       // Show selected quiz group
       const selectedGroup = document.getElementById(subcategory);
       selectedGroup?.classList.add("active");
+      scrollToElement(selectedGroup);
 
       // Hide all subcategory buttons except selected
       subcategoryButtons.forEach(btn => btn.classList.remove("hide-when-selected"));
