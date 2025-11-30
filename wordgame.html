@@ -550,6 +550,17 @@
       color: #333;
       margin-top: 4px;
     }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      margin-top: 12px;
+      width: auto;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
   </style>
 </head>
 <body>
@@ -580,9 +591,10 @@
 
     <div class="controls">
       <button class="btn" id="reset-btn">Shuffle &amp; Reset</button>
-      <button class="btn" id="next-batch-btn">Next 4 Words</button>
-    </div>
-    <div class="message" id="message"></div>
+    <button class="btn" id="next-batch-btn">Next 4 Words</button>
+  </div>
+  <div class="message" id="message"></div>
+  <a class="btn home-link" href="https://zpace.ink">Back to Quiz Home</a>
   </div>
 
   <script src="wordgame.js" defer></script>
