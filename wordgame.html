@@ -8,13 +8,13 @@
   <style>
     html {
       min-height: 100%;
-      background: radial-gradient(circle at 20% 10%,  #4e500c 0, #5a5e11 30%, #95950e 80%);
+      background: radial-gradient(circle at 20% 10%,  #4e500c 0, #5a5e11 30%, #444407 80%);
       background-attachment: fixed;
     }
 
     body {
       font-family: 'Jost', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 20% 10%, #46471285 0, #5d5e11ca 30%, #85851e7c 80%);
+      background: radial-gradient(circle at 20% 10%, #46471285 0, #6b6c13ca 30%, #5858087c 80%);
       min-height: 100vh;
       margin: 0;
       padding: 32px 20px 20px;
@@ -67,7 +67,7 @@
       flex-direction: column;
       gap: 16px;
       position: relative;
-      background: #fafafa21;
+      background: #fafafa0e;
       border: 1px solid transparent;
       border-radius: 16px;
       padding: 16px;
@@ -104,7 +104,7 @@
       border: 1px solid transparent;
       border-radius: 999px;
       padding: 6px 12px;
-      background: #fafafa30;
+      background: #828b2d21;
       color: #fff;
       font-size: 0.9rem;
       cursor: pointer;
@@ -116,7 +116,7 @@
     }
 
     .theme-btn.active {
-      background: #b0be3468;
+      background: #c2d21574;
       color: #fff;
     }
 
@@ -140,7 +140,7 @@
 
     .small-btn {
       border: 1px solid rgba(255, 255, 255, 0.5);
-      background: rgba(255, 255, 255, 0.124);
+      background: #c2d21503;
       color: #fff;
       border-radius: 10px;
       padding: 6px 10px;
@@ -157,7 +157,7 @@
     }
 
     .small-btn:hover {
-      background: #f4f4f6;
+      background: #9fad1982;
       transform: translateY(-1px);
     }
 
@@ -223,7 +223,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.4);
+      background: rgba(25, 29, 2, 0.675);
       display: none;
       align-items: center;
       justify-content: center;
@@ -238,7 +238,7 @@
     .modal {
       position: relative;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.135);
       border-radius: 12px;
       max-width: 500px;
       width: 100%;
@@ -280,19 +280,20 @@
       font-size: 1rem;
       font-weight: 600;
       margin: 0;
-      color: #333;
+      color: #ffffff;
     }
 
     .close-btn {
       position: relative;
       overflow: hidden;
       border: 1px solid transparent;
-      background: #f2f2f6;
+      background: #4d550578;
       border-radius: 999px;
       padding: 6px 10px;
       cursor: pointer;
       font-size: 0.9rem;
       font-family:'Jost';
+      color:#fff;
     }
 
     .close-btn::after {
@@ -324,16 +325,36 @@
     }
 
     .word-list li {
-      background: rgba(247, 247, 250, 0.7);
-      border: 1px solid #92a01b;
-      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      background: #a9ba0d3a;
+      border: 1px solid transparent;
+      border-radius: 10px;
       padding: 8px 10px;
       font-size: 0.9rem;
-      color: #444;
+      color: #fefaf4;
       font-weight:600;
       line-height: 1.35;
       word-break: break-word;
       white-space: normal;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+    }
+
+    .word-list li::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 10px;
+      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
     }
 
     .instructions {
@@ -341,7 +362,7 @@
       z-index: 0;
       font-size: 0.95rem;
       color: #fff;
-      background: rgba(255, 255, 255, 0.079); /* align with view word list button */
+      background: rgba(255, 255, 255, 0.033); /* align with view word list button */
       border: 1px solid transparent;
       border-radius: 12px;
       background-clip: padding-box;
@@ -373,7 +394,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
       gap: 10px;
-      background: rgba(255, 255, 255, 0.171);
+      background: rgba(255, 255, 255, 0.029);
       padding: 10px;
       border-radius: 12px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.08);
@@ -412,43 +433,60 @@
         max-height: 55vh;
       }
       .word-list li{
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         line-height: 1.35rem;
       }
 
     }
 
     .tile {
+      position: relative;
+      overflow: hidden;
       width: 100%;
       text-align: center;
       padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid #a6b51dde;
-      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid transparent;
+      background: #a9ba0d78;
       cursor: pointer;
-      font-size: 0.95rem;
-      color: #2a2a2a;
+      font-size: 1.1rem;
+      color: #fefaf4;
       -webkit-appearance: none;
       appearance: none;
       transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
       white-space: nowrap;
       font-family:'Jost';
       font-weight:600;
-      backdrop-filter: blur(6px) saturate(130%);
-      -webkit-backdrop-filter: blur(6px) saturate(130%);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-      font-size:1.1rem;
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.14);
+    }
+
+    .tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.1px;
+      border-radius: 999px;
+      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
     }
 
     .tile:hover {
       transform: translateY(-1px);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.16);
+      background: #5d661151;
     }
 
     .tile.selected {
       border-color: #92a01b;
       box-shadow: 0 0 0 2px rgba(88, 100, 17, 0.2);
-      background: #f0f4c5;
+      background: #454a0d63;
     }
 
     .rows-container {
@@ -475,7 +513,7 @@
       min-height: 40px;
       border-radius: 8px;
       border: 1px dashed rgba(225, 243, 148, 0.848);
-      background: rgba(255, 255, 255, 0.127);
+      background: #fafed115;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -488,15 +526,16 @@
     }
 
     .slot:hover {
-      background: #f8ffb7;
-      border-color: #c9d462;
+      background: #565e0d38;
+      border-color: #9aa90e84;
     }
 
     .row.completed .slot {
       border-style: solid;
-      border-color: #92a01b;
-      background: #e8efa9;
-      color: #333;
+      border-color: #808e06ba;
+      background: #3b42034f;
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.14);
     }
 
     .row.completed .row-label {
@@ -516,7 +555,7 @@
       border: 1px solid transparent;
       border-radius: 999px;
       padding: 8px 14px;
-      background: #b0be3468;
+      background: #c2d21574;
       color: #fff;
       font-size: 0.9rem;
       cursor: pointer;
@@ -545,7 +584,7 @@
     }
 
     .btn:hover {
-      background: #848d33;
+      background: #848d3336;
     }
 
     .btn:active {
@@ -555,7 +594,7 @@
     .message {
       font-size: 0.95rem;
       font-weight: 500;
-      color: #333;
+      color: #fff;
       margin-top: 4px;
     }
 
