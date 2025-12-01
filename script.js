@@ -171,14 +171,14 @@ function showResult() {
       feedback += "</ul>";
     }
   
-    const resultHTML = `
+  const resultHTML = `
     <div class="fade-in">
       <h2>Quiz Complete!</h2>
       <p>Your Score: ${score}/${currentData.length}</p>
       ${feedback}
       <div class="end-buttons">
-        <button onclick="location.reload()" class="play-again-button">Play Again</button>
-        <a href="index.html" class="home-button">Play More Quizzes</a>
+        <button onclick="location.reload()" class="play-again-button glass-btn">Play Again</button>
+        <a href="index.html" class="home-button glass-btn">Play More Quizzes</a>
       </div>
     </div>
   `;
@@ -209,8 +209,8 @@ function showResult() {
         <p>Your Score: ${score}/${currentData.length}</p>
         ${feedback}
         <div class="end-buttons">
-          <button onclick="location.reload()" class="play-again-button">Play Again</button>
-          <a href="index.html" class="home-button">Play More Quizzes</a>
+          <button onclick="location.reload()" class="play-again-button glass-btn">Play Again</button>
+          <a href="index.html" class="home-button glass-btn">Play More Quizzes</a>
         </div>
       </div>
     `;

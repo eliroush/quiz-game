@@ -10,13 +10,13 @@
   <style>
     html {
       min-height: 100%;
-      background: radial-gradient(circle at 20% 20%, #898b1e 0, #8d9230 30%, #dfdf88 70%);
+      background: radial-gradient(circle at 10% 20%, #4e500c 0, #5a5e11 30%, #95950e 80%);
       background-attachment: fixed;
     }
 
     body {
       font-family: 'Jost', sans-serif;
-      background: radial-gradient(circle at 20% 20%, #80821e85 0, #aaac43ca 30%, #c8c8407c 70%);
+      background: radial-gradient(circle at 10% 20%, #43440785 0, #4d4e10ca 30%, #5858097c 80%);
       margin: 0;
       padding:0;
       display: flex;
@@ -32,7 +32,7 @@
     h1 {
       font-size: 2.3em;
       margin-bottom: 1em;
-      color:#2a2a2a;
+      color:#fefaf4;
       letter-spacing:0.2em;
       font-weight:600;
       text-transform: uppercase;
@@ -45,8 +45,8 @@
       max-width: 1000px;
       box-sizing: border-box;
       text-align: center;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.4);
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.167);
       border: 1px solid transparent;
       border-radius: 14px;
       position: relative;
@@ -80,7 +80,9 @@
     .titlebox {
       display: flex;
       flex-direction: column;
-      width: 95%;
+      width: 92%;
+      max-width: 1000px;
+      margin: 16px auto 12px;
       align-items: center;
       text-align: center;
       justify-content: center;
@@ -93,7 +95,7 @@
       max-width: 1000px;
       margin: 16px auto;
       padding: 18px;
-      background: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.081);
       border: 1px solid transparent;
       border-radius: 18px;
       backdrop-filter: blur(10px) saturate(130%);
@@ -107,7 +109,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.07);
       opacity: 1;
       z-index: -1;
       filter: blur(2px);
@@ -142,8 +144,9 @@
       max-width: 1000px;
       box-sizing: border-box;
       text-align: center;
-      padding: 10px 14px;
-      background: rgba(255, 255, 255, 0.4);
+      padding: 20px 20px;
+      background: rgba(255, 255, 255, 0.175);
+      color: #fefaf4;
       border: 1px solid transparent;
       border-radius: 12px;
       position: relative;
@@ -204,8 +207,8 @@
     .category-btn {
       position: relative;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.1);
-      color: #2a2a2a;
+      background: rgba(255, 255, 255, 0.031);
+      color: #fefaf4;
       border: 1px solid transparent;
       border-radius:14px;
       padding: 0.8em 2.8em;
@@ -227,7 +230,7 @@
     .category-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 26px rgba(0,0,0,0.12);
-      color: #77770b;
+      background: rgba(255, 255, 255, 0.18);
     }
 
     .category-btn::after {
@@ -268,14 +271,13 @@
   font-family: 'Jost', sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
-  color: #2a2a2a;
+  color: #fff;
   margin-bottom: 0.5rem;
   text-align: center;
   width:85%;
   padding: 0.5em 0;
-  text-decoration: underline #2a2a2a 1px;
-  text-underline-offset: 0.25em; 
   text-transform: uppercase;
+  font-weight:600;
 }
 
 
@@ -321,7 +323,7 @@
     .quiz-group h2 {
       margin-bottom: 0.5em;
       font-size: 1.3em;
-      color: #F2D06C;
+      color: #fff;
       letter-spacing: 0.08em;
       opacity:0;
       transform: translateY(10px);
@@ -343,9 +345,9 @@
       width: 40%;
       padding: 1em 2em;
       margin: 0.5em auto;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       border: 1px solid transparent;
-      color: #2a2a2a;
+      color: #fefaf4;
       border-radius:12px;
       text-transform: uppercase;
       font-weight: 400;
@@ -385,8 +387,8 @@
     .subcategory-btn {
       position: relative;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.1);
-      color:#2a2a2a;
+      background: rgba(255, 255, 255, 0.12);
+      color:#fefaf4;
       font-size:1.1em;
       font-weight:600;
       text-transform: uppercase;
@@ -422,9 +424,7 @@
     }
 
     .subcategory-btn.active{
-      color:#2a2a2a;
-      
-      
+      color:#fefaf4;
     }
 
     #loader-screen {
@@ -480,8 +480,9 @@
 }
 
     .quiz-group  h2 {
-      text-transform:uppercase; 
-      color:#2a2a2a;}
+      text-transform:uppercase;
+      color:#fefaf4;
+    }
 
     .fade-in-load {
       opacity: 0;
@@ -608,6 +609,7 @@ body { padding-bottom:50px;
   .intro-chip {
     max-width: none;
     width: 100%;
+   
   }
 
   #categories {

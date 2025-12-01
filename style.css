@@ -40,31 +40,40 @@ h2 {
 }
 
 #homelink{
-  width:100%;
-  padding:1em;
-  margin-top: 1rem;
+  width:65%;
+  max-width: 600px;
+  padding:1.4em 0;
+  margin: 1.2rem auto 0;
   text-align:center;
   display:flex;
   flex-direction:column;
   align-items:center;
-  
+  justify-content:center;
+  box-sizing: border-box;
 
 }
 
 .back-button {
-  width:35%;
-  padding:1em 0;
-  border: solid 1px #fefaf4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 40px 25px;
+  border: 1px solid transparent;
   color:#fefaf4;
-  border-radius:8px;
-  font-size:0.9em;
+  border-radius:12px;
+  font-size:1em;
   text-decoration:none;
-  padding: 1rem;
-  margin-top: 3rem;
-  margin-bottom:2rem;
+  margin-top: 1.8rem;
+  margin-bottom:1.5rem;
   text-align:center;
   text-transform:uppercase;
-  text-decoration-line:none;
+  box-sizing: border-box;
+}
+
+a.back-button .glass-btn {
+  padding:40px 25px;
 }
 
 #quiz-question {
@@ -375,16 +384,15 @@ button:disabled {
 
 .end-buttons button,
 .end-buttons a {
-  font-size: 1.3em;
+  width: 100%;
+  max-width: 520px;
+  font-size: 1.1em;
   padding: 1em;
-  border: none;
-  border-radius: 6px;
   text-decoration: none;
   text-align: center;
-  transition: background 0.3s ease;
-  width:100%;
-  font-weight:600;
- 
+  border: none;
+  background: transparent;
+  box-sizing: border-box;
 }
 
 .play-again-button a{
@@ -397,9 +405,12 @@ button:disabled {
 }
 
 a.back-button {
-  border:solid 1px #fefaf4;
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid transparent;
   color:#fefaf4;
   transition: background 0.4s ease;
+  box-sizing: border-box;
 }
 
 a.back-button:hover{
@@ -408,9 +419,8 @@ a.back-button:hover{
   transition: background 0.5s ease;
 }
 
-.end-buttons button:hover,
-.end-buttons a:hover {
-  background-color: #8D8F51;
+.end-buttons .glass-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .fade-in {
@@ -469,7 +479,7 @@ a.back-button:hover{
 }
 
 p.fade-in-load.loaded{
-  color:#2a2a2a;
+  color:#fff;
 }
 
 @media (max-width: 768px) {
@@ -495,11 +505,12 @@ p.fade-in-load.loaded{
     overflow-x: hidden;
   }
 
-  .back-button {
-    width:90%;
-
+  #homelink {
+    width: 100%;
+    max-width: 600px;
+    padding: 1.2em 0;
+    margin: 1.2rem auto 0;
   }
-
 
   .hide-when-selected {
     display: none !important; /* removes layout space entirely */
