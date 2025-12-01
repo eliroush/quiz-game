@@ -10,13 +10,19 @@
   <style>
     html {
       min-height: 100%;
-      background: radial-gradient(circle at 10% 20%, #4e500c 0, #5a5e11 30%, #95950e 80%);
+      background: radial-gradient(circle at 20% 15%, #4b520e 0%, #2f3309 38%, transparent 62%),
+    radial-gradient(circle at 82% 8%, #6a7314 0%, #3a410c 35%, transparent 64%),
+    radial-gradient(circle at 50% 90%, #4f570f 0%, #2a2f08 42%, transparent 68%),
+    linear-gradient(180deg, #171a05 0%, #0c0e03 100%);
       background-attachment: fixed;
     }
 
     body {
       font-family: 'Jost', sans-serif;
-      background: radial-gradient(circle at 10% 20%, #43440785 0, #4d4e10ca 30%, #5858097c 80%);
+      background:radial-gradient(circle at 25% 20%, rgba(75, 82, 14, 0.55) 0%, rgba(47, 51, 9, 0.5) 40%, transparent 60%),
+    radial-gradient(circle at 78% 15%, rgba(106, 115, 20, 0.5) 0%, rgba(58, 65, 12, 0.45) 36%, transparent 58%),
+    radial-gradient(circle at 50% 80%, rgba(79, 87, 15, 0.45) 0%, rgba(42, 47, 8, 0.42) 45%, transparent 70%),
+    linear-gradient(180deg, rgba(23, 26, 5, 0.95) 0%, rgba(12, 14, 3, 0.95) 100%);
       margin: 0;
       padding:0;
       display: flex;
@@ -32,7 +38,7 @@
     h1 {
       font-size: 2.3em;
       margin-bottom: 1em;
-      color:#fefaf4;
+      color:#fcfce2;
       letter-spacing:0.2em;
       font-weight:600;
       text-transform: uppercase;
@@ -46,7 +52,7 @@
       box-sizing: border-box;
       text-align: center;
       padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.167);
+      background: rgba(255, 255, 255, 0.053);
       border: 1px solid transparent;
       border-radius: 14px;
       position: relative;
@@ -72,7 +78,7 @@
     }
 
     h2 {
-      color:#ffffff;
+      color:#fcfce2;
     }
 
 
@@ -91,48 +97,28 @@
 
     .glass-shell {
       position: relative;
-      width: 92%;
+      width: 100%;
       max-width: 1000px;
-      margin: 16px auto;
-      padding: 18px;
-      background: rgba(255, 255, 255, 0.081);
-      border: 1px solid transparent;
-      border-radius: 18px;
-      backdrop-filter: blur(10px) saturate(130%);
-      -webkit-backdrop-filter: blur(10px) saturate(130%);
-      box-shadow: 0 14px 36px rgba(0,0,0,0.08);
-      overflow: hidden;
+      margin: 10px auto 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      overflow: visible;
       z-index: 0;
     }
 
-    .glass-shell::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.07);
-      opacity: 1;
-      z-index: -1;
-      filter: blur(2px);
-    }
-
+    .glass-shell::before,
     .glass-shell::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      padding: 1.2px;
-      border-radius: 18px;
-      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
-      pointer-events: none;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
+      content: none;
     }
 
     p {
       font-size: 1.4em;
-      color: #ffffff;
+      color: #fcfce2;
       margin-bottom: 5%;
       font-weight: 400;
       letter-spacing: 0.1em;
@@ -145,8 +131,8 @@
       box-sizing: border-box;
       text-align: center;
       padding: 20px 20px;
-      background: rgba(255, 255, 255, 0.175);
-      color: #fefaf4;
+      background: rgba(255, 255, 255, 0.046);
+      color: #fcfce2;
       border: 1px solid transparent;
       border-radius: 12px;
       position: relative;
@@ -208,7 +194,7 @@
       position: relative;
       overflow: hidden;
       background: rgba(255, 255, 255, 0.031);
-      color: #fefaf4;
+      color: #fcfce2;
       border: 1px solid transparent;
       border-radius:14px;
       padding: 0.8em 2.8em;
@@ -230,7 +216,13 @@
     .category-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 26px rgba(0,0,0,0.12);
-      background: rgba(255, 255, 255, 0.18);
+      background: #99a52a87;
+    }
+
+    .category-btn.open {
+      background: #4c5404ba;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.16);
+      color: #d4e81d;
     }
 
     .category-btn::after {
@@ -271,7 +263,7 @@
   font-family: 'Jost', sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
-  color: #fff;
+  color: #fcfce2;
   margin-bottom: 0.5rem;
   text-align: center;
   width:85%;
@@ -323,7 +315,7 @@
     .quiz-group h2 {
       margin-bottom: 0.5em;
       font-size: 1.3em;
-      color: #fff;
+      color: #fcfce2;
       letter-spacing: 0.08em;
       opacity:0;
       transform: translateY(10px);
@@ -345,7 +337,7 @@
       width: 40%;
       padding: 1em 2em;
       margin: 0.5em auto;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.031);
       border: 1px solid transparent;
       color: #fefaf4;
       border-radius:12px;
@@ -365,7 +357,7 @@
     .quiz-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 26px rgba(0,0,0,0.14);
-      background-color: rgba(255, 255, 255, 0.18);
+      background:#99a52a87;
     }
 
     .quiz-btn::after {
@@ -387,7 +379,7 @@
     .subcategory-btn {
       position: relative;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.042);
       color:#fefaf4;
       font-size:1.1em;
       font-weight:600;
@@ -397,7 +389,7 @@
       padding:1em 2em;
       width:40%;
       border: 1px solid transparent;
-      backdrop-filter: blur(8px) saturate(130%);
+     backdrop-filter: blur(8px) saturate(130%);
       -webkit-backdrop-filter: blur(8px) saturate(130%);
       box-shadow: 0 10px 22px rgba(0,0,0,0.1);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -406,6 +398,7 @@
     .subcategory-btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 26px rgba(0,0,0,0.12);
+      background:#99a52a87;
     }
 
     .subcategory-btn::after {
@@ -424,11 +417,13 @@
     }
 
     .subcategory-btn.active{
-      color:#fefaf4;
+      color: #d4e81d;
+      background:#4c5404ba;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.14);
     }
 
     #loader-screen {
-  background-color: #a1a15b;
+ background: linear-gradient(165deg, #3c4300cf 0%, #a1aa3ce1 20%, #3c4300cf 50%, #a1aa3ce1 80%, #3c4300cf 100%);
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -436,6 +431,8 @@
   align-items: center;
   justify-content: center;
   transition: opacity 1s ease, visibility 1s ease;
+  backdrop-filter: blur(5px) saturate(130%);
+      -webkit-backdrop-filter: blur(5px) saturate(130%);
 }
 
 #loader-screen.fade-out {
@@ -464,12 +461,6 @@
 }
 
 /* fade it out */
-.subcategory-btn.hide-when-selected {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
 .category-btn .arrow {
   display: inline-block;
   transition: transform 0.3s ease;
@@ -567,11 +558,11 @@
         width: 100%;
       }
       .quiz-btn {
-        width:100%;
+        width:96%;
       }
 
       .subcategory-btn{
-        width:100%;
+        width:96%;
       }
 
       #lottie-animation {
@@ -585,17 +576,17 @@ body { padding-bottom:50px;
 }
 
 .glass-shell {
-  width: calc(100% - 40px);
-  margin: 20px auto;
-  padding: 16px;
+  width: 100%;
+  margin: 10px auto 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 @media (max-width: 900px) {
   .glass-shell {
-    width: calc(100% - 64px);
-    margin: 18px auto;
-    padding: 16px;
+    width: 100%;
+    margin: 10px auto 0;
+    padding: 0;
     box-sizing: border-box;
   }
 
@@ -630,9 +621,9 @@ body { padding-bottom:50px;
 
 @media (max-width: 600px) {
   .glass-shell {
-    width: calc(100% - 20px);
-    margin: 14px auto;
-    padding: 14px;
+    width: 100%;
+    margin: 8px auto 0;
+    padding: 0;
     box-sizing: border-box;
   }
 
@@ -811,7 +802,7 @@ body { padding-bottom:50px;
         }
 
         // Clear selected subcategory highlighting
-        subcategoryButtons.forEach(btn => btn.classList.remove("hide-when-selected"));
+        subcategoryButtons.forEach(btn => btn.classList.remove("active"));
 
         return;
       }
@@ -847,9 +838,9 @@ body { padding-bottom:50px;
       selectedGroup?.classList.add("active");
       scrollToElement(selectedGroup);
 
-      // Hide all subcategory buttons except selected
-      subcategoryButtons.forEach(btn => btn.classList.remove("hide-when-selected"));
-      button.classList.add("hide-when-selected");
+      // Highlight the selected subcategory button
+      subcategoryButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
     });
   });
 
