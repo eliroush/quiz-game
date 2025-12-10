@@ -1,10 +1,29 @@
+:root {
+  --bg-base-top: #050915;
+  --bg-base-bottom: #0a1021;
+  --bg-glow-1: rgba(69, 192, 163, 0.32);
+  --bg-glow-2: rgba(78, 122, 214, 0.3);
+  --bg-glow-3: rgba(245, 165, 36, 0.22);
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.08);
+  --text-primary: #eaf4ff;
+  --accent: #45c0a3;
+  --accent-strong: #f5a524;
+  --button-hover: rgba(69, 192, 163, 0.22);
+  --button-active: rgba(69, 192, 163, 0.34);
+  --shadow-soft: 0 10px 24px rgba(0,0,0,0.12);
+  --shadow-strong: 0 12px 26px rgba(0,0,0,0.16);
+  --border-gradient: linear-gradient(165deg, #45c0a3, #f5d76f, #45c0a3, #f5d76f);
+  --border-gradient-strong: linear-gradient(165deg, #45c0a3, #f5a524, #45c0a3, #f5a524);
+}
+
 html {
   min-height: 100%;
   background:
-    radial-gradient(circle at 20% 15%, #4b520e 0%, #2f3309 38%, transparent 62%),
-    radial-gradient(circle at 82% 8%, #6a7314 0%, #3a410c 35%, transparent 64%),
-    radial-gradient(circle at 50% 90%, #4f570f 0%, #2a2f08 42%, transparent 68%),
-    linear-gradient(180deg, #171a05 0%, #0c0e03 100%);
+    radial-gradient(circle at 20% 15%, var(--bg-glow-1) 0%, transparent 45%),
+    radial-gradient(circle at 82% 8%, var(--bg-glow-2) 0%, transparent 52%),
+    radial-gradient(circle at 50% 90%, var(--bg-glow-3) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-base-top) 0%, var(--bg-base-bottom) 100%);
   background-attachment: fixed;
 }
 
@@ -24,14 +43,14 @@ html {
 body{ 
   font-family: 'Jost', sans-serif;
   background:
-    radial-gradient(circle at 25% 20%, rgba(75, 82, 14, 0.55) 0%, rgba(47, 51, 9, 0.5) 40%, transparent 60%),
-    radial-gradient(circle at 78% 15%, rgba(106, 115, 20, 0.5) 0%, rgba(58, 65, 12, 0.45) 36%, transparent 58%),
-    radial-gradient(circle at 50% 80%, rgba(79, 87, 15, 0.45) 0%, rgba(42, 47, 8, 0.42) 45%, transparent 70%),
-    linear-gradient(180deg, rgba(23, 26, 5, 0.95) 0%, rgba(12, 14, 3, 0.95) 100%);
+    radial-gradient(circle at 25% 20%, rgba(69, 192, 163, 0.26) 0%, transparent 54%),
+    radial-gradient(circle at 78% 15%, rgba(78, 122, 214, 0.24) 0%, transparent 56%),
+    radial-gradient(circle at 50% 80%, rgba(245, 165, 36, 0.2) 0%, transparent 66%),
+    linear-gradient(180deg, rgba(5, 9, 21, 0.95) 0%, rgba(7, 12, 27, 0.96) 100%);
   background-attachment: fixed;
   margin: 0;
   padding: 0;
-  color: #fcfce2;;
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   justify-content:start;
@@ -90,7 +109,7 @@ h2 {
   max-width: 600px;
   padding: 40px 25px;
   border: 1px solid transparent;
-  color:#fefaf4;
+  color:var(--text-primary);
   border-radius:12px;
   font-size:1em;
   text-decoration:none;
@@ -99,9 +118,13 @@ h2 {
   text-align:center;
   text-transform:uppercase;
   box-sizing: border-box;
+  background: var(--glass);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
 }
 
-.back-button .glass-btn:hover{ background:#808a1fb9;
+.back-button .glass-btn:hover{ background:var(--button-hover);
 
 }
 
@@ -116,22 +139,22 @@ a.back-button .glass-btn {
 .answer-description {
   margin-top: 15px;
   padding:1em;
-  background-color: #fcfce2;;
-  border-left: 4px solid #8f9815;
+  background-color: var(--glass-strong);
+  border-left: 4px solid var(--accent);
   border-radius: 6px;
   font-style: italic;
   font-size: 0.99rem;
-  color: #333;
+  color: var(--text-primary);
   display:flex;
   flex-direction:column;
   align-items: center;
   text-align: center;
   gap:2px;
   width:75%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-soft);
 }
 h1#quiz-title{
-  color:#fcfce2;;
+  color:var(--text-primary);
 }
 
 .description-image {
@@ -173,7 +196,7 @@ h1#quiz-title{
 }
 
 #quiz-progress {
-  color: #cbcb4d; /* or any custom color */
+  color: var(--accent-strong);
   font-weight: bold;
   margin-bottom: 10px;
   font-size: 1rem;
@@ -183,9 +206,9 @@ h1#quiz-title{
   position: relative;
   width:100%;
   margin: auto;
-  background: #fafafa29;
+  background: var(--glass);
   border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-soft);
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
@@ -206,7 +229,7 @@ h1#quiz-title{
   inset: 0;
   padding: 1.2px;
   border-radius: 16px;
-  background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+  background: var(--border-gradient);
   pointer-events: none;
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -247,14 +270,14 @@ h1#quiz-title{
   font-size:1.2em;
   letter-spacing:0.03em;
   font-weight:500;
-  background:#2d3101c2;
+  background:var(--glass);
 
   border: 1px solid transparent;
   background-clip: padding-box;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.10);
+  box-shadow: var(--shadow-soft);
   /*backdrop-filter: blur(6px) saturate(130%);
   -webkit-backdrop-filter: blur(6px) saturate(130%);*/
-  color:#fcfce2;
+  color:var(--text-primary);
 }
 
 #quiz-options li::after {
@@ -263,7 +286,7 @@ h1#quiz-title{
   inset: 0;
   padding: 1px;
   border-radius: 12px;
-  background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+  background: var(--border-gradient);
   pointer-events: none;
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -274,8 +297,8 @@ h1#quiz-title{
 
 #quiz-options li:hover{
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.16);
-  background:#909218bc;
+  box-shadow: var(--shadow-strong);
+  background:var(--button-hover);
 }
 
 
@@ -283,8 +306,8 @@ button {
   font-family: 'Jost', sans-serif;
   margin-top: 2px;
   padding: 10px 16px;
-  background-color: #a1a15b;
-  color: #fcfce2;
+  background-color: var(--accent);
+  color: var(--text-primary);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -293,13 +316,13 @@ button {
 
 
 a.home-button{
-  background-color:#a1a15b;
-  color:#fefaf4;
+  background-color:var(--accent);
+  color:var(--text-primary);
 }
 
 a.home-button:hover{
-  background-color:#95983c;
-  color:#fefaf4;
+  background-color:var(--button-hover);
+  color:var(--text-primary);
 
 }
 
@@ -314,8 +337,8 @@ a.home-button:hover{
   padding: 12px 18px;
   border: 1px solid transparent;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fefaf4;
+  background: var(--glass);
+  color: var(--text-primary);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -323,7 +346,7 @@ a.home-button:hover{
   cursor: pointer;
   backdrop-filter: blur(8px) saturate(130%);
   -webkit-backdrop-filter: blur(8px) saturate(130%);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+  box-shadow: var(--shadow-soft);
   transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -333,7 +356,7 @@ a.home-button:hover{
   inset: 0;
   padding: 1.2px;
   border-radius: 12px;
-  background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+  background: var(--border-gradient);
   pointer-events: none;
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -344,7 +367,8 @@ a.home-button:hover{
 
 .glass-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 26px rgba(0,0,0,0.22);
+  box-shadow: var(--shadow-strong);
+  background: var(--button-hover);
 
 }
 
@@ -365,7 +389,7 @@ a.home-button:hover{
 }
 
 #quiz-mode-select button:hover{
-  background-color: #95983c;
+  background-color: var(--button-hover);
 
 }
 
@@ -374,15 +398,15 @@ a.home-button:hover{
 }
 
 .correct-answer {
-  background-color: #4c5404ba !important; /* default correct highlight */
-  color: #d4e81d !important;
+  background-color: var(--button-active) !important; /* default correct highlight */
+  color: var(--accent-strong) !important;
   text-transform:uppercase!important;
   
 }
 
 .incorrect-answer {
-  background-color: #676b4b47!important; /* default incorrect highlight */
-  color: #e0e989c0!important;
+  background-color: rgba(255,255,255,0.05)!important; /* default incorrect highlight */
+  color: rgba(234,244,255,0.72)!important;
   text-decoration:line-through #8383835d!important;
   font-style:italic!important;
   text-decoration:line-through!important;
@@ -395,22 +419,22 @@ a.home-button:hover{
   width:78%;
   font-size:1.2rem;
   text-transform: uppercase;
-  background-color:#95983c72;
-  color:#fcfce2;
+  background-color:var(--button-hover);
+  color:var(--text-primary);
 }
 
 #next-btn:hover {
-  background-color: #909218d1;
+  background-color: var(--button-active);
   
 }
 
 button:disabled {
-  background-color: #47482383;
+  background-color: rgba(255,255,255,0.08);
 }
 #next-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background-color:#47482383 ;}
+  background-color:rgba(255,255,255,0.08) ;}
 
 .end-buttons {
   display: flex;
@@ -446,19 +470,19 @@ a.back-button {
   width: 100%;
   max-width: 520px;
   border: 1px solid transparent;
-  color:#fefaf4;
+  color:var(--text-primary);
   transition: background 0.4s ease;
   box-sizing: border-box;
 }
 
 a.back-button:hover{
- background-color:#909218d1;
-  color:#fcfce2;
+ background-color:var(--button-active);
+  color:var(--text-primary);
   transition: background 0.5s ease;
 }
 
 .end-buttons .glass-btn:hover {
-  background:  #909218d1;
+  background:  var(--button-hover);
 }
 
 .fade-in {
@@ -511,13 +535,13 @@ a.back-button:hover{
 .mini-title {
   font-size: 0.99em;
   font-weight: 600;
-  color: #fcfce2;
+  color: var(--text-primary);
   margin-bottom: 0.5em;
   text-align: center;
 }
 
 p.fade-in-load.loaded{
-  color:#fcfce2;
+  color:var(--text-primary);
 }
 
 @media (max-width: 768px) {
@@ -533,15 +557,15 @@ p.fade-in-load.loaded{
   body {
     font-family: 'Jost', sans-serif;
     background:
-      radial-gradient(circle at 25% 20%, rgba(75, 82, 14, 0.55) 0%, rgba(47, 51, 9, 0.5) 40%, transparent 60%),
-      radial-gradient(circle at 78% 15%, rgba(106, 115, 20, 0.5) 0%, rgba(58, 65, 12, 0.45) 36%, transparent 58%),
-      radial-gradient(circle at 50% 80%, rgba(79, 87, 15, 0.45) 0%, rgba(42, 47, 8, 0.42) 45%, transparent 70%),
-      linear-gradient(180deg, rgba(23, 26, 5, 0.95) 0%, rgba(12, 14, 3, 0.95) 100%);
+      radial-gradient(circle at 25% 20%, rgba(69, 192, 163, 0.26) 0%, transparent 54%),
+      radial-gradient(circle at 78% 15%, rgba(78, 122, 214, 0.24) 0%, transparent 56%),
+      radial-gradient(circle at 50% 80%, rgba(245, 165, 36, 0.2) 0%, transparent 66%),
+      linear-gradient(180deg, rgba(5, 9, 21, 0.95) 0%, rgba(7, 12, 27, 0.96) 100%);
     background-attachment: scroll;
     background-size: 180% 180%;
     background-position: center top;
     padding: 5% 1%;
-    color: #fcfce2;
+    color: var(--text-primary);
     justify-content:start;
     align-items:center;
     
@@ -630,7 +654,8 @@ p.fade-in-load.loaded{
   font-size:1.2rem;
   text-transform: uppercase;
   font-weight:600;
-  color:#fcfce2;
+  color:var(--text-primary);
+  background-color: var(--button-hover);
 }
 
   h1, h2 {
@@ -644,7 +669,7 @@ p.fade-in-load.loaded{
   #quiz-question {
     font-size: 1.1em;
     font-weight:600;
-    color:#fcfce2;
+    color:var(--text-primary);
   }
 
   #quiz-options {
@@ -663,7 +688,7 @@ p.fade-in-load.loaded{
 
   .mini-title {
     font-size:1.1em;
-    color:#fcfce2;;
+    color:var(--text-primary);
   }
 
   #quiz-progress {
@@ -680,15 +705,15 @@ p.fade-in-load.loaded{
   body {
     font-family: 'Jost', sans-serif;
     background:
-      radial-gradient(circle at 25% 20%, rgba(75, 82, 14, 0.55) 0%, rgba(47, 51, 9, 0.5) 40%, transparent 60%),
-      radial-gradient(circle at 78% 15%, rgba(106, 115, 20, 0.5) 0%, rgba(58, 65, 12, 0.45) 36%, transparent 58%),
-      radial-gradient(circle at 50% 80%, rgba(79, 87, 15, 0.45) 0%, rgba(42, 47, 8, 0.42) 45%, transparent 70%),
-      linear-gradient(180deg, rgba(23, 26, 5, 0.95) 0%, rgba(12, 14, 3, 0.95) 100%);
+      radial-gradient(circle at 25% 20%, rgba(69, 192, 163, 0.26) 0%, transparent 54%),
+      radial-gradient(circle at 78% 15%, rgba(78, 122, 214, 0.24) 0%, transparent 56%),
+      radial-gradient(circle at 50% 80%, rgba(245, 165, 36, 0.2) 0%, transparent 66%),
+      linear-gradient(180deg, rgba(5, 9, 21, 0.95) 0%, rgba(7, 12, 27, 0.96) 100%);
     background-attachment: scroll;
     background-size: 160% 160%;
     background-position: center top;
     padding: 2% 2%;
-    color: #fcfce2;
+    color: var(--text-primary);
     justify-content:center;
     align-items:center;
    
@@ -757,7 +782,8 @@ p.fade-in-load.loaded{
   width:100%;
   font-size:1.2em;
   text-transform: uppercase;
-  color:#fcfce2;
+  color:var(--text-primary);
+  background-color: var(--button-hover);
   
 }
 

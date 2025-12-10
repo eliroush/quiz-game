@@ -8,21 +8,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="icon" href="triviafavicon.png" type="image/png">
   <style>
+    :root {
+      --bg-base-top: #050915;
+      --bg-base-bottom: #0a1021;
+      --bg-glow-1: rgba(69, 192, 163, 0.32);
+      --bg-glow-2: rgba(78, 122, 214, 0.3);
+      --bg-glow-3: rgba(245, 165, 36, 0.22);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-strong: rgba(255, 255, 255, 0.08);
+      --text-primary: #eaf4ff;
+      --accent: #45c0a3;
+      --accent-strong: #f5a524;
+      --button-hover: rgba(69, 192, 163, 0.22);
+      --button-active: rgba(69, 192, 163, 0.34);
+      --shadow-soft: 0 10px 24px rgba(0,0,0,0.12);
+      --shadow-strong: 0 12px 26px rgba(0,0,0,0.16);
+      --border-gradient: linear-gradient(165deg, #45c0a3, #f5d76f, #45c0a3, #f5d76f);
+      --border-gradient-strong: linear-gradient(165deg, #45c0a3, #f5a524, #45c0a3, #f5a524);
+    }
+
     html {
       min-height: 100%;
-      background: radial-gradient(circle at 20% 15%, #4b520e 0%, #2f3309 38%, transparent 62%),
-    radial-gradient(circle at 82% 8%, #6a7314 0%, #3a410c 35%, transparent 64%),
-    radial-gradient(circle at 50% 90%, #4f570f 0%, #2a2f08 42%, transparent 68%),
-    linear-gradient(180deg, #171a05 0%, #0c0e03 100%);
+      background:
+        radial-gradient(circle at 20% 15%, var(--bg-glow-1) 0%, transparent 45%),
+        radial-gradient(circle at 82% 8%, var(--bg-glow-2) 0%, transparent 52%),
+        radial-gradient(circle at 50% 90%, var(--bg-glow-3) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-base-top) 0%, var(--bg-base-bottom) 100%);
       background-attachment: fixed;
     }
 
     body {
       font-family: 'Jost', sans-serif;
-      background:radial-gradient(circle at 25% 20%, rgba(75, 82, 14, 0.55) 0%, rgba(47, 51, 9, 0.5) 40%, transparent 60%),
-    radial-gradient(circle at 78% 15%, rgba(106, 115, 20, 0.5) 0%, rgba(58, 65, 12, 0.45) 36%, transparent 58%),
-    radial-gradient(circle at 50% 80%, rgba(79, 87, 15, 0.45) 0%, rgba(42, 47, 8, 0.42) 45%, transparent 70%),
-    linear-gradient(180deg, rgba(23, 26, 5, 0.95) 0%, rgba(12, 14, 3, 0.95) 100%);
+      background:
+        radial-gradient(circle at 25% 20%, rgba(69, 192, 163, 0.26) 0%, transparent 54%),
+        radial-gradient(circle at 78% 15%, rgba(78, 122, 214, 0.24) 0%, transparent 56%),
+        radial-gradient(circle at 50% 80%, rgba(245, 165, 36, 0.2) 0%, transparent 66%),
+        linear-gradient(180deg, rgba(5, 9, 21, 0.95) 0%, rgba(7, 12, 27, 0.96) 100%);
       margin: 0;
       padding:0;
       display: flex;
@@ -33,12 +54,13 @@
       text-align: center;
       padding-bottom:100px;
       background-attachment: fixed;
+      color: var(--text-primary);
     }
 
     h1 {
       font-size: 2.3em;
       margin-bottom: 1em;
-      color:#fcfce2;
+      color: var(--text-primary);
       letter-spacing:0.2em;
       font-weight:600;
       text-transform: uppercase;
@@ -52,12 +74,12 @@
       box-sizing: border-box;
       text-align: center;
       padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.053);
+      background: var(--glass);
       border: 1px solid transparent;
       border-radius: 14px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(6px) saturate(120%);
       -webkit-backdrop-filter: blur(6px) saturate(120%);
     }
@@ -68,7 +90,7 @@
       inset: 0;
       padding: 1.4px;
       border-radius: 14px;
-      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      background: var(--border-gradient);
       pointer-events: none;
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -78,7 +100,7 @@
     }
 
     h2 {
-      color:#fcfce2;
+      color: var(--text-primary);
     }
 
 
@@ -118,7 +140,7 @@
 
     p {
       font-size: 1.4em;
-      color: #fcfce2;
+      color: var(--text-primary);
       margin-bottom: 5%;
       font-weight: 400;
       letter-spacing: 0.1em;
@@ -131,13 +153,13 @@
       box-sizing: border-box;
       text-align: center;
       padding: 20px 20px;
-      background: rgba(255, 255, 255, 0.046);
-      color: #fcfce2;
+      background: var(--glass);
+      color: var(--text-primary);
       border: 1px solid transparent;
       border-radius: 12px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(6px) saturate(120%);
       -webkit-backdrop-filter: blur(6px) saturate(120%);
     }
@@ -148,7 +170,7 @@
       inset: 0;
       padding: 1.2px;
       border-radius: 12px;
-      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      background: var(--border-gradient);
       pointer-events: none;
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -193,8 +215,8 @@
     .category-btn {
       position: relative;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.031);
-      color: #fcfce2;
+      background: var(--glass);
+      color: var(--text-primary);
       border: 1px solid transparent;
       border-radius:14px;
       padding: 0.8em 2.8em;
@@ -210,19 +232,19 @@
       margin-bottom: 0;
       backdrop-filter: blur(8px) saturate(130%);
       -webkit-backdrop-filter: blur(8px) saturate(130%);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      box-shadow: var(--shadow-soft);
     }
 
     .category-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.12);
-      background: #99a52a87;
+      box-shadow: var(--shadow-strong);
+      background: var(--button-hover);
     }
 
     .category-btn.open {
-      background: #4c5404ba;
-      box-shadow: 0 12px 26px rgba(0,0,0,0.16);
-      color: #d4e81d;
+      background: var(--button-active);
+      box-shadow: var(--shadow-strong);
+      color: var(--accent-strong);
     }
 
     .category-btn::after {
@@ -231,7 +253,7 @@
       inset: 0;
       padding: 1.4px;
       border-radius: 14px;
-      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      background: var(--border-gradient);
       pointer-events: none;
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -263,7 +285,7 @@
   font-family: 'Jost', sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
-  color: #fcfce2;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   text-align: center;
   width:85%;
@@ -315,7 +337,7 @@
     .quiz-group h2 {
       margin-bottom: 0.5em;
       font-size: 1.3em;
-      color: #fcfce2;
+      color: var(--text-primary);
       letter-spacing: 0.08em;
       opacity:0;
       transform: translateY(10px);
@@ -337,9 +359,9 @@
       width: 40%;
       padding: 1em 2em;
       margin: 0.5em auto;
-      background: rgba(255, 255, 255, 0.031);
+      background: var(--glass);
       border: 1px solid transparent;
-      color: #fefaf4;
+      color: var(--text-primary);
       border-radius:12px;
       text-transform: uppercase;
       font-weight: 400;
@@ -351,13 +373,13 @@
       text-decoration: none;
       backdrop-filter: blur(6px) saturate(130%);
       -webkit-backdrop-filter: blur(6px) saturate(130%);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+      box-shadow: var(--shadow-soft);
     }
 
     .quiz-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.14);
-      background:#99a52a87;
+      box-shadow: var(--shadow-strong);
+      background: var(--button-hover);
     }
 
     .quiz-btn::after {
@@ -366,7 +388,7 @@
       inset: 0;
       padding: 1.2px;
       border-radius: 12px;
-      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      background: var(--border-gradient);
       pointer-events: none;
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -379,8 +401,8 @@
     .subcategory-btn {
       position: relative;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.042);
-      color:#fefaf4;
+      background: var(--glass);
+      color: var(--text-primary);
       font-size:1.1em;
       font-weight:600;
       text-transform: uppercase;
@@ -391,14 +413,14 @@
       border: 1px solid transparent;
      backdrop-filter: blur(8px) saturate(130%);
       -webkit-backdrop-filter: blur(8px) saturate(130%);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow-soft);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .subcategory-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.12);
-      background:#99a52a87;
+      box-shadow: var(--shadow-strong);
+      background: var(--button-hover);
     }
 
     .subcategory-btn::after {
@@ -407,7 +429,7 @@
       inset: 0;
       padding: 1.2px;
       border-radius: 12px;
-      background: linear-gradient(165deg, #abc103cf, #f8fdc4e1, #abc103cf, #f8fdc4e1);
+      background: var(--border-gradient);
       pointer-events: none;
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
@@ -417,13 +439,13 @@
     }
 
     .subcategory-btn.active{
-      color: #d4e81d;
-      background:#4c5404ba;
-      box-shadow: 0 12px 26px rgba(0,0,0,0.14);
+      color: var(--accent-strong);
+      background: var(--button-active);
+      box-shadow: var(--shadow-strong);
     }
 
     #loader-screen {
- background: linear-gradient(165deg, #a1aa3ce1  0%, #eef2cccf  50%, #a1aa3ce1 100% );
+ background: linear-gradient(165deg, rgba(69, 192, 163, 0.7) 0%, rgba(245, 165, 36, 0.62) 50%, rgba(69, 192, 163, 0.7) 100% );
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -472,7 +494,7 @@
 
     .quiz-group  h2 {
       text-transform:uppercase;
-      color:#fefaf4;
+      color: var(--text-primary);
     }
 
     .fade-in-load {
