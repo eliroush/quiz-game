@@ -445,7 +445,11 @@
     }
 
     #loader-screen {
- background: linear-gradient(165deg, rgba(69, 192, 163, 0.7) 0%, rgba(245, 165, 36, 0.62) 50%, rgba(69, 192, 163, 0.7) 100% );
+ background:
+    radial-gradient(circle at 22% 18%, rgba(69, 192, 163, 0.28) 0%, transparent 48%),
+    radial-gradient(circle at 78% 12%, rgba(78, 122, 214, 0.26) 0%, transparent 52%),
+    radial-gradient(circle at 50% 82%, rgba(245, 165, 36, 0.22) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(5, 9, 21, 0.9) 0%, rgba(7, 12, 27, 0.92) 100%);
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -453,8 +457,8 @@
   align-items: center;
   justify-content: center;
   transition: opacity 1s ease, visibility 1s ease;
-  backdrop-filter: blur(5px) saturate(130%);
-      -webkit-backdrop-filter: blur(5px) saturate(130%);
+  backdrop-filter: blur(8px) saturate(125%);
+      -webkit-backdrop-filter: blur(8px) saturate(125%);
 }
 
 #loader-screen.fade-out {
