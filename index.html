@@ -117,6 +117,55 @@
       height: auto;
     }
 
+    .top-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin: 6px 0 14px;
+    }
+
+    .nav-btn {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 16px 28px;
+      background: var(--glass);
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      font-size: 1.05rem;
+      min-width: 240px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      transition: background 0.15s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    }
+
+    .nav-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 12px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    .nav-btn:hover {
+      background: var(--button-hover);
+      box-shadow: var(--shadow-strong);
+      transform: translateY(-1px);
+    }
+
     .glass-shell {
       position: relative;
       width: 100%;
@@ -201,16 +250,25 @@
     .quiz-links a:hover {
     }
 
-    #categories {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
+#categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 14px;
       margin: 0 auto 2em;
+      padding: 0 12px;
       width: 100%;
       max-width: 1000px;
-      flex-wrap: wrap;
+      box-sizing: border-box;
+      justify-items: stretch;
     }
+
+@media (max-width: 820px) and (min-width: 661px) {
+  #categories {
+    width: 96%;
+    max-width: 900px;
+    padding: 0 14px;
+  }
+}
 
     .category-btn {
       position: relative;
@@ -219,17 +277,17 @@
       color: var(--text-primary);
       border: 1px solid transparent;
       border-radius:14px;
-      padding: 0.8em 2.8em;
+      padding: 1em 2.8em;
       font-size: 1em;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
       text-transform: uppercase;
       font-weight: 400;
       letter-spacing: 0.09em;
-      flex: 1 1 300px;
-      min-width: 260px;
-      max-width: 360px;
+      width: 100%;
+      max-width: none;
       margin-bottom: 0;
+      box-sizing: border-box;
       backdrop-filter: blur(8px) saturate(130%);
       -webkit-backdrop-filter: blur(8px) saturate(130%);
       box-shadow: var(--shadow-soft);
@@ -660,23 +718,31 @@ body { padding-bottom:50px;
   }
 
   #categories {
-    padding: 0 6px;
+    padding: 0 10px;
     gap: 12px;
     align-items: stretch;
-  }
-
-  .category-btn {
-    flex: 0 0 100%;
-    min-width: unset;
-    max-width: none;
-    width: 100%;
+    grid-template-columns: 1fr;
   }
 }
 
+@media (max-width: 660px) {
   #categories {
-    padding: 0 10px;
+    width: 98%;
+    max-width: 640px;
+    padding: 0 14px;
+    gap: 14px;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    margin: 0 auto;
   }
-    }
+
+  .category-btn {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
   </style>
 </head>
 <body>
@@ -688,6 +754,9 @@ body { padding-bottom:50px;
     <p class="fade-in-load intro-chip">Choose from the categories below to see related quizzes!</p>
   </div>
 
+  <div class="top-nav fade-in-load loaded">
+    <a class="nav-btn" href="zpacestudio.html">Zpace Studio Hub</a>
+  </div>
 
   <div class="glass-shell fade-in-load">
     <div id="categories">
