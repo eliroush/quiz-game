@@ -20,7 +20,7 @@
       --button-hover: rgba(69, 192, 163, 0.22);
       --button-active: rgba(69, 192, 163, 0.34);
       --shadow-soft: 0 10px 24px rgba(0,0,0,0.12);
-      --shadow-strong: 0 12px 26px rgba(0,0,0,0.16);
+      --shadow-strong: 0 10px 12px -5 rgba(0,0,0,0.16);
       --border-gradient: linear-gradient(165deg, #45c0a3, #f5d76f, #45c0a3, #f5d76f);
     }
 
@@ -33,11 +33,17 @@
         linear-gradient(180deg, rgba(5, 9, 21, 0.95) 0%, rgba(7, 12, 27, 0.96) 100%);
       margin: 0;
       min-height: 100vh;
-      padding: 2rem 1.2rem 3rem;
+      padding: 1.2rem 0.8rem 2.2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       color: var(--text-primary);
+      overscroll-behavior-y: contain;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+      overflow-x: hidden;
     }
 
     h1, h2 {
@@ -65,8 +71,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
-      padding: 14px 16px;
+      gap: 0.3rem;
+      padding: 12px 16px;
       background: var(--glass);
       border-radius: 14px;
       border: 1px solid transparent;
@@ -75,7 +81,7 @@
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(8px) saturate(130%);
       -webkit-backdrop-filter: blur(8px) saturate(130%);
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .title-wrapper::after {
@@ -91,12 +97,20 @@
               mask-composite: exclude;
     }
 
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
     .nav-links {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
-      width: 100%;
     }
 
     .nav-btn {
@@ -136,10 +150,15 @@
     }
 
     #timerDisplay {
+      position: fixed;
+      top: 95px;
+      right: 12px;
+      z-index: 200;
       font-weight: 700;
       color: var(--text-primary);
+      text-shadow: #0a1021;
       background: var(--glass);
-      padding: 0.35rem 0.9rem;
+      padding: 0.45rem 1rem;
       border-radius: 999px;
       box-shadow: var(--shadow-soft);
       border: 1px solid transparent;
@@ -157,17 +176,40 @@
 
     .game-board {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-      gap: 1rem;
-      max-width: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.55rem;
       width: 100%;
-      margin-top: 1rem;
+      max-width: 960px;
+      margin: 0.6rem auto 0;
+      padding: 0 10px;
+      box-sizing: border-box;
+      touch-action: manipulation;
+      justify-items: stretch;
+      justify-content: center;
+    }
+
+    /* Force at least 3 columns on narrow screens */
+    @media (max-width: 520px) {
+      .game-board {
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+        gap: 0.45rem;
+        width: 100%;
+        max-width: 960px;
+        padding: 0 10px;
+        justify-content: center;
+        
+      }
+
+     
+      
     }
 
     @media (min-width: 768px) {
       .game-board {
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       }
+     
+      
     }
 
     .card {
@@ -175,6 +217,10 @@
       aspect-ratio: 1 / 1;
       perspective: 1000px;
       cursor: pointer;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .card-inner {
@@ -222,6 +268,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      -webkit-user-drag: none;
     }
 
     .matched .card-inner {
@@ -246,18 +293,37 @@
       display: none;
       opacity: 0;
       text-align: center;
-      padding: 1.3rem 1rem 1.5rem;
+      padding: 1.4rem 1.2rem 1.6rem;
       background: var(--glass);
       border-radius: 14px;
       border: 1px solid transparent;
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(8px) saturate(130%);
       -webkit-backdrop-filter: blur(8px) saturate(130%);
+      width: 100%;
+      max-width: 1000px;
+      margin: 1.4rem auto 0;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
     }
 
     #match-complete.show {
       display: block;
       animation: fadeInScale 0.6s ease forwards;
+    }
+
+    #match-complete::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.3px;
+      border-radius: 14px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
     }
 
 @keyframes fadeInScale {
@@ -284,6 +350,10 @@
   box-shadow: var(--shadow-soft);
   transition: background 0.15s ease, box-shadow 0.2s ease, transform 0.1s ease;
   
+}
+
+.play-again-btn {
+  border: 1px solid var(--accent);
 }
 
 #match-complete button:hover {
@@ -319,19 +389,19 @@
 
     <div class="title-wrapper">
         <h1>Beverage Matching Game</h1>
-        <div id="timerDisplay">Time: 00:00</div>
-        <div class="nav-links">
-          <a class="nav-btn" href="index.html">Back to Quiz Home</a>
-          <a class="nav-btn" href="match.html">Switch to Desktop/Full</a>
-        </div>
       </div>
+  <div id="timerDisplay">00:00</div>
   <div class="game-board" id="gameBoard"></div>
+
+  <div class="nav-links" style="margin: 1rem 0 1rem; width: 100%; max-width: 1000px; justify-content: center;">
+    <a class="nav-btn" href="index.html">Quiz Home</a>
+    <a class="nav-btn" href="match.html">Desktop/Full</a>
+  </div>
 
   <div id="match-complete" class="fade-in-complete">
     <h2>Match Complete!</h2>
     <p id="final-time"></p>
-    <button onclick="location.reload()">Play Again</button>
-    <button onclick="window.location.href='index.html'">Go to Homepage</button>
+    <button class="play-again-btn" onclick="location.reload()">Play Again</button>
   </div>
 
   <script>
@@ -369,7 +439,7 @@
       timerRunning = true;
       timerInterval = setInterval(() => {
         const elapsedSeconds = Math.floor((Date.now() - timerStart) / 1000);
-        timerDisplay.textContent = `Time: ${formatTime(elapsedSeconds)}`;
+        timerDisplay.textContent = ` ${formatTime(elapsedSeconds)}`;
       }, 1000);
     }
 
@@ -450,9 +520,11 @@
     stopTimer();
     const elapsedSeconds = Math.floor((Date.now() - timerStart) / 1000);
     finalTimeDisplay.textContent = `Your time: ${formatTime(elapsedSeconds)}`;
-    document.getElementById('match-complete').style.display = 'block';
+    const complete = document.getElementById('match-complete');
+    complete.style.display = 'block';
     setTimeout(() => {
-      document.getElementById('match-complete').classList.add('show');
+      complete.classList.add('show');
+      complete.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 50); // slight delay to trigger fade-in animation
   }
 }
