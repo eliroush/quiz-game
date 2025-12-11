@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zpace Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base-top: #050915;
+      --bg-base-bottom: #0a1021;
+      --bg-glow-1: rgba(69, 192, 163, 0.32);
+      --bg-glow-2: rgba(78, 122, 214, 0.3);
+      --bg-glow-3: rgba(245, 165, 36, 0.22);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-strong: rgba(255, 255, 255, 0.08);
+      --text-primary: #eaf4ff;
+      --accent: #45c0a3;
+      --accent-strong: #f5a524;
+      --button-hover: rgba(69, 192, 163, 0.22);
+      --button-active: rgba(69, 192, 163, 0.34);
+      --shadow-soft: 0 10px 24px rgba(0,0,0,0.12);
+      --shadow-strong: 0 12px 26px rgba(0,0,0,0.16);
+      --border-gradient: linear-gradient(165deg, #45c0a3, #f5d76f, #45c0a3, #f5d76f);
+    }
+
+    html, body {
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(69, 192, 163, 0.26) 0%, transparent 54%),
+        radial-gradient(circle at 78% 15%, rgba(78, 122, 214, 0.24) 0%, transparent 56%),
+        radial-gradient(circle at 50% 80%, rgba(245, 165, 36, 0.2) 0%, transparent 66%),
+        linear-gradient(180deg, rgba(5, 9, 21, 0.95) 0%, rgba(7, 12, 27, 0.96) 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 48px;
+      box-sizing: border-box;
+    }
+
+    .shell {
+      width: min(980px, calc(100% - 24px));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero {
+      width: 100%;
+      padding: 18px 18px;
+      border-radius: 16px;
+      background: var(--glass);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.4px;
+      border-radius: 16px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+    }
+
+    .subtitle {
+      margin: 0;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: rgba(234, 244, 255, 0.85);
+    }
+
+    .link-grid {
+      width: 100%;
+      max-width: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+      justify-items: stretch;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .link-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px 22px;
+      border-radius: 16px;
+      background: var(--glass);
+      border: 1px solid transparent;
+      text-decoration: none;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.15s ease;
+      text-align: center;
+      width: 100%;
+      max-width: none;
+      box-sizing: border-box;
+    }
+
+    .link-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.4px;
+      border-radius: 16px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-strong);
+      background: var(--button-hover);
+    }
+
+    .link-card:active {
+      transform: translateY(0);
+      background: var(--button-active);
+    }
+
+    .link-title {
+      display: block;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .link-desc {
+      margin: 0;
+      font-size: 0.95rem;
+      color: rgba(234, 244, 255, 0.82);
+      line-height: 1.45;
+    }
+
+    .footnote {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: rgba(234, 244, 255, 0.72);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 32px 14px 46px; }
+      .shell { width: min(980px, calc(100% - 12px)); }
+      .hero { padding: 16px 16px; width: 98%; margin-top: 10px; }
+      h1 { letter-spacing: 0.08em; }
+      .link-grid {
+        gap: 14px;
+        justify-items: stretch;
+        grid-template-columns: 1fr;
+      }
+      .link-card {
+        width: 100%;
+        max-width: none;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="hero">
+      <h1>Zpace Studio</h1>
+      <p class="subtitle">Links to All My Spaces and Games</p>
+    </div>
+
+    <div class="link-grid">
+      <a class="link-card" href="https://eink.space" target="_blank" rel="noopener noreferrer">
+        <span class="link-title">eink.space stories</span>
+        <p class="link-desc">Curio Stories - Visual Stories - Canvas Stories</p>
+      </a>
+
+      <a class="link-card" href="https://edgezpace.com" target="_blank" rel="noopener noreferrer">
+        <span class="link-title">EdgeZpace</span>
+        <p class="link-desc">Design Portfolio</p>
+      </a>
+
+      <a class="link-card" href="index.html">
+        <span class="link-title">Quizzes & Games</span>
+        <p class="link-desc">Quizzes for eink.space Curio Stories, Matching Games & Word Games.</p>
+      </a>
+    </div>
+
+    <p class="footnote">Zpace Studio Hub</p>
+  </div>
+</body>
+</html>
