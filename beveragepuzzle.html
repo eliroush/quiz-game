@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Drink Puzzle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-base-top: #050915;
+      --bg-base-bottom: #0a1021;
+      --bg-glow-1: rgba(69, 192, 163, 0.32);
+      --bg-glow-2: rgba(78, 122, 214, 0.3);
+      --bg-glow-3: rgba(245, 165, 36, 0.22);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-strong: rgba(255, 255, 255, 0.08);
+      --text-primary: #eaf4ff;
+      --accent: #45c0a3;
+      --accent-strong: #f5a524;
+      --button-hover: rgba(69, 192, 163, 0.22);
+      --button-active: rgba(69, 192, 163, 0.34);
+      --shadow-soft: 0 10px 24px rgba(0,0,0,0.12);
+      --shadow-strong: 0 12px 26px rgba(0,0,0,0.16);
+      --border-gradient: linear-gradient(165deg, #45c0a3, #f5d76f, #45c0a3, #f5d76f);
+
+      --radius: 16px;
+      --gap: 10px;
+      /* Puzzle sizing */
+      --cols: 3;
+      --rows: 3;
+      --board-max: 520px;
+      --board-pad: 12px;
+      --snap-threshold: 22; /* px */
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:'Jost', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text-primary);
+      background:
+        radial-gradient(circle at 25% 20%, var(--bg-glow-1) 0%, transparent 54%),
+        radial-gradient(circle at 78% 15%, var(--bg-glow-2) 0%, transparent 56%),
+        radial-gradient(circle at 50% 80%, var(--bg-glow-3) 0%, transparent 66%),
+        linear-gradient(180deg, rgba(5, 9, 21, 0.95) 0%, rgba(7, 12, 27, 0.96) 100%);
+      min-height: 100svh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding: 18px;
+    }
+
+    .app{
+      width:min(980px, 100%);
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .header{
+      background: var(--glass);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      padding: 14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      border: 1px solid transparent;
+    }
+    .header::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      padding:1.2px;
+      border-radius: var(--radius);
+      background: var(--border-gradient);
+      pointer-events:none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .title h1{
+      font-size: 1.1rem;
+      margin:0;
+      line-height:1.2;
+      letter-spacing:.2px;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+      color: #f5a524;
+    }
+    .sub{
+      font-size: 1rem;
+      opacity:.82;
+      color: var(--text-primary);
+      font-weight:600;
+    }
+    .title{
+        font-size:1rem;
+    }
+
+    .controls{
+      display:flex;
+      gap: 8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    button{
+      appearance:none;
+      border: 1px solid transparent;
+      background: var(--glass);
+      color: var(--text-primary);
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      font-family: 'Jost', sans-serif;
+      cursor: pointer;
+      touch-action: manipulation;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
+    }
+    button::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      padding:1px;
+      border-radius: 12px;
+      background: var(--border-gradient);
+      pointer-events:none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+    button:hover{
+      background: var(--button-hover);
+      box-shadow: var(--shadow-strong);
+      transform: translateY(-1px);
+    }
+    button:active{ transform: translateY(0); }
+
+    .stage{
+      background: var(--glass);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      padding: var(--board-pad);
+      display:grid;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+    }
+    .stage::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      padding:1.2px;
+      border-radius: var(--radius);
+      background: var(--border-gradient);
+      pointer-events:none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    /* Board + tray layout */
+    .layout{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+
+    .boardWrap{
+      display:flex;
+      justify-content:center;
+    }
+
+    .board{
+      width: min(var(--board-max), 100%);
+      aspect-ratio: var(--cols) / var(--rows); /* follow grid ratio */
+      border-radius: 16px;
+      position:relative;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(69, 192, 163, 0.16) 0%, transparent 54%),
+        radial-gradient(circle at 78% 15%, rgba(78, 122, 214, 0.14) 0%, transparent 56%),
+        radial-gradient(circle at 50% 80%, rgba(245, 165, 36, 0.14) 0%, transparent 66%),
+        rgba(255,255,255,0.04);
+      overflow:hidden;
+      border: 1px solid transparent;
+      box-shadow: var(--shadow-soft);
+    }
+    .board.complete .hint{
+      opacity: 1;
+      filter: saturate(1) contrast(1);
+      transition: opacity 0.6s ease, filter 0.6s ease;
+    }
+    .board.complete .piecesLayer{
+      opacity: 0;
+      pointer-events: none;
+    }
+    .board.complete .targets{
+      opacity: 0;
+    }
+
+    /* Hint image (faded full image behind) */
+    .hint{
+      position:absolute;
+      inset:0;
+      background-size: cover;
+      background-position: center;
+      opacity: .22;
+      filter: saturate(0.95) contrast(0.95);
+      pointer-events:none;
+    }
+
+    /* Target grid overlay (invisible but helpful for snapping math) */
+    .targets{
+      position:absolute;
+      inset: 0;
+      display:grid;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      grid-template-rows: repeat(var(--rows), 1fr);
+      gap: var(--gap);
+      padding: var(--gap);
+      pointer-events:none;
+    }
+    .targets .cell{
+      border-radius: 12px;
+      outline: 1px dashed rgba(255,255,255,.18);
+      outline-offset: -2px;
+      background: rgba(255,255,255,.08);
+    }
+
+    /* Pieces live in a layer on top */
+    .piecesLayer{
+      position:absolute;
+      inset:0;
+      padding: var(--gap);
+      pointer-events:auto;
+      transition: opacity 0.5s ease;
+    }
+
+    .piece{
+      position:absolute;
+      border-radius: 12px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255,255,255,.12);
+      background-repeat:no-repeat;
+      background-size: calc(var(--cols) * 100%) calc(var(--rows) * 100%);
+      touch-action: none; /* IMPORTANT for mobile drag */
+      user-select:none;
+      -webkit-user-select:none;
+      cursor: grab;
+      overflow:hidden;
+    }
+    .piece:active{ cursor: grabbing; }
+
+    .piece.placed{
+      box-shadow: none;
+      border-color: rgba(255,255,255,.16);
+    }
+
+    .footerRow{
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+      align-items:center;
+      padding: 4px 2px 0;
+      color: var(--text-primary);
+    }
+    .controls-footer{
+      display:flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      justify-content: flex-end;
+    }
+    .controls-footer .nav-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
+    .timer-chip{
+      padding:8px 14px;
+      border-radius:12px;
+      background: var(--glass);
+      box-shadow: var(--shadow-soft);
+      border:1px solid transparent;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-weight:700;
+      min-width: 80px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .status{
+      font-weight: 700;
+      font-size: 1rem;
+      color:#f5a524
+    }
+    .small{
+      font-size:1rem;
+      font-weight:600;
+      opacity: .82;
+    }
+
+    /* Slightly larger board on wider screens */
+    @media (min-width: 760px){
+      :root{ --board-max: 640px; }
+     .title h1{ font-size: 1.1rem; }
+     .sub{
+        font-size:1rem;
+     }
+      
+    }
+
+    @media (max-width: 640px){
+      :root{
+        --board-pad: 10px;
+        --board-max: 600px;
+      }
+      body{
+        padding: 1rem 0.5rem 1.8rem;
+        
+      }
+      .title h1 {
+        font-size:1.1rem;
+        
+      }
+      .sub {
+        font-size: 1rem;
+        font-weight:600;
+        line-height: 1.2rem;
+      }
+      button{
+        font-size: 15.5px;
+        letter-spacing: 0.045em;
+      }
+      .header{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .controls{
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+      .controls-footer{
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 8px;
+        justify-content: flex-start;
+      }
+      .controls-footer .nav-row{
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .timer-chip{
+        align-self: flex-start;
+      }
+      .app {
+        gap:10px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <div class="title">
+        <h1 id="puzzleTitle">Drink Puzzle</h1>
+        <div class="sub">Drag pieces into place. 9 pieces (3×3).</div>
+      </div>
+      <div class="controls">
+        <button id="btnShuffle" type="button">Shuffle</button>
+        <button id="btnHint" type="button">Hint: On</button>
+        <button id="btnReset" type="button">Reset</button>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="layout">
+        <div class="boardWrap">
+          <div class="board" id="board">
+            <div class="hint" id="hint"></div>
+
+            <div class="targets" id="targets"></div>
+
+            <div class="piecesLayer" id="piecesLayer" aria-label="Puzzle pieces"></div>
+          </div>
+        </div>
+
+        <div class="footerRow">
+          <div>
+            <div class="status" id="status">0 / 9 placed</div>
+            <div class="small" id="smallNote">Tip: If a piece is close, it will snap in.</div>
+          </div>
+          <div class="small controls controls-footer">
+            <div class="nav-row">
+              <button id="btnPrev" type="button" style="padding:10px 25px;">Prev</button>
+              <button id="btnNext" type="button" style="padding:10px 25px;">Next</button>
+            </div>
+            <span id="timerDisplay" class="timer-chip">00:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  // ========= Config =========
+  const COLS = 3;
+  const ROWS = 3;
+  const TOTAL = COLS * ROWS;
+
+  // Default image if none provided
+  const DEFAULT_IMG = "images/maitaipuzzle.png";
+  const params = new URLSearchParams(location.search);
+  // Puzzle list (replace src/title with your images)
+  const PUZZLES = [
+    { src: "images/maitaipuzzle.png", title: "Mai Tai Puzzle" },
+    { src: "images/mojitopuzzle.png", title: "Mojito Puzzle" },
+    { src: "images/teapuzzle.png", title: "Tea Puzzle" },
+    { src: "images/mimosapuzzle.png", title: "Mimosa Puzzle" },
+    { src: "images/caramelpuzzle.png", title: "Caramel Puzzle" },
+    { src: "images/lemonadepuzzle.png", title: "Lemonade Puzzle" }
+  ];
+  // If img/title provided, treat as a single puzzle
+  const queryImg = params.get("img");
+  const queryTitle = params.get("title");
+  const activePuzzles = queryImg ? [{ src: queryImg, title: queryTitle || "Drink Puzzle" }] : PUZZLES;
+  let currentIndex = 0;
+  let imgSrc = activePuzzles[currentIndex].src;
+
+  // ========= Elements =========
+  const board = document.getElementById("board");
+  const hint = document.getElementById("hint");
+  const targetsEl = document.getElementById("targets");
+  const piecesLayer = document.getElementById("piecesLayer");
+  const statusEl = document.getElementById("status");
+  const btnShuffle = document.getElementById("btnShuffle");
+  const btnReset = document.getElementById("btnReset");
+  const btnHint = document.getElementById("btnHint");
+  const btnPrev = document.getElementById("btnPrev");
+  const btnNext = document.getElementById("btnNext");
+  const puzzleTitle = document.getElementById("puzzleTitle");
+  const timerDisplay = document.getElementById("timerDisplay");
+
+  // Apply CSS vars for grid
+  document.documentElement.style.setProperty("--cols", COLS);
+  document.documentElement.style.setProperty("--rows", ROWS);
+
+  // ========= State =========
+  let targets = []; // [{x,y,w,h}]
+  let pieces = [];  // [{el, correctIndex, placed, x,y,w,h}]
+  let placedCount = 0;
+  let hintOn = true;
+  let timerInterval = null;
+  let timerStart = null;
+
+  // ========= Helpers =========
+  function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+  function updateStatus(){
+    statusEl.textContent = `${placedCount} / ${TOTAL} placed`;
+    if (placedCount === TOTAL){
+      statusEl.textContent = `Done! ${TOTAL} / ${TOTAL} placed 🎉`;
+      board.classList.add("complete");
+      stopTimer();
+    } else {
+      board.classList.remove("complete");
+    }
+  }
+
+  function formatTime(totalSeconds){
+    const m = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+    const s = String(totalSeconds % 60).padStart(2, "0");
+    return `${m}:${s}`;
+  }
+
+  function updateTimer(){
+    if (!timerStart) return;
+    const elapsed = Math.floor((Date.now() - timerStart) / 1000);
+    timerDisplay.textContent = formatTime(elapsed);
+  }
+
+  function stopTimer(){
+    if (timerInterval){
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  function resetTimer(startNow = false){
+    stopTimer();
+    timerStart = startNow ? Date.now() : null;
+    timerDisplay.textContent = "00:00";
+    if (startNow){
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+  }
+
+  function startTimerIfNeeded(){
+    if (timerStart) return;
+    resetTimer(true);
+  }
+
+  function boardRect(){
+    return board.getBoundingClientRect();
+  }
+
+  function buildTargets(){
+    targetsEl.innerHTML = "";
+    targets = [];
+
+    for (let i=0; i<TOTAL; i++){
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      targetsEl.appendChild(cell);
+    }
+
+    // After layout, measure exact target positions (in layer coordinates)
+    const br = boardRect();
+    const layerRect = piecesLayer.getBoundingClientRect();
+
+    // Targets grid is padded by CSS var --gap; we mimic that by measuring cells directly:
+    const cells = Array.from(targetsEl.children);
+    cells.forEach((cell) => {
+      const r = cell.getBoundingClientRect();
+      targets.push({
+        x: r.left - layerRect.left,
+        y: r.top - layerRect.top,
+        w: r.width,
+        h: r.height
+      });
+    });
+  }
+
+  function clearPieces(){
+    piecesLayer.innerHTML = "";
+    pieces = [];
+    placedCount = 0;
+    updateStatus();
+  }
+
+  function setPuzzle(index){
+    currentIndex = (index + activePuzzles.length) % activePuzzles.length;
+    imgSrc = activePuzzles[currentIndex].src;
+    puzzleTitle.textContent = activePuzzles[currentIndex].title;
+    hint.style.backgroundImage = `url("${imgSrc}")`;
+    createPieces();
+    resetTimer(false);
+  }
+
+  function createPieces(){
+    clearPieces();
+    buildTargets();
+
+    // Create piece elements positioned randomly within the board area
+    const layerRect = piecesLayer.getBoundingClientRect();
+    const pad = 6;
+
+    for (let idx=0; idx<TOTAL; idx++){
+      const t = targets[idx];
+
+      const el = document.createElement("div");
+      el.className = "piece";
+      el.style.width = `${t.w}px`;
+      el.style.height = `${t.h}px`;
+      el.style.backgroundImage = `url("${imgSrc}")`;
+
+      // Each piece shows its portion of the background:
+      const col = idx % COLS;
+      const row = Math.floor(idx / COLS);
+      el.style.backgroundPosition = `${(col/(COLS-1))*100}% ${(row/(ROWS-1))*100}%`;
+
+      // Random starting spot (within board)
+      const startX = clamp(Math.random() * (layerRect.width - t.w), pad, layerRect.width - t.w - pad);
+      const startY = clamp(Math.random() * (layerRect.height - t.h), pad, layerRect.height - t.h - pad);
+
+      el.style.left = `${startX}px`;
+      el.style.top  = `${startY}px`;
+
+      piecesLayer.appendChild(el);
+
+      const piece = {
+        el,
+        correctIndex: idx,
+        placed: false,
+        x: startX,
+        y: startY,
+        w: t.w,
+        h: t.h
+      };
+      pieces.push(piece);
+
+      enableDrag(piece);
+    }
+
+    updateStatus();
+  }
+
+  function trySnap(piece){
+    const threshold = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--snap-threshold")) || 22;
+    const t = targets[piece.correctIndex];
+
+    const dx = Math.abs(piece.x - t.x);
+    const dy = Math.abs(piece.y - t.y);
+
+    if (dx <= threshold && dy <= threshold){
+      // Snap & lock
+      piece.x = t.x;
+      piece.y = t.y;
+      piece.el.style.left = `${piece.x}px`;
+      piece.el.style.top  = `${piece.y}px`;
+
+      if (!piece.placed){
+        piece.placed = true;
+        piece.el.classList.add("placed");
+        placedCount++;
+        updateStatus();
+      }
+      return true;
+    }
+    return false;
+  }
+
+  function enableDrag(piece){
+    let startPX = 0, startPY = 0;
+    let startX = 0, startY = 0;
+
+    piece.el.addEventListener("pointerdown", (e) => {
+      if (piece.placed) return;
+
+      startTimerIfNeeded();
+      piece.el.setPointerCapture(e.pointerId);
+
+      startPX = e.clientX;
+      startPY = e.clientY;
+      startX = piece.x;
+      startY = piece.y;
+
+      // Prevent page scroll while dragging
+      e.preventDefault();
+    });
+
+    piece.el.addEventListener("pointermove", (e) => {
+      if (!piece.el.hasPointerCapture(e.pointerId)) return;
+      if (piece.placed) return;
+
+      const dx = e.clientX - startPX;
+      const dy = e.clientY - startPY;
+
+      const layerRect = piecesLayer.getBoundingClientRect();
+      const newX = clamp(startX + dx, 0, layerRect.width - piece.w);
+      const newY = clamp(startY + dy, 0, layerRect.height - piece.h);
+
+      piece.x = newX;
+      piece.y = newY;
+
+      piece.el.style.left = `${piece.x}px`;
+      piece.el.style.top  = `${piece.y}px`;
+      e.preventDefault();
+    });
+
+    piece.el.addEventListener("pointerup", (e) => {
+      if (!piece.el.hasPointerCapture(e.pointerId)) return;
+
+      piece.el.releasePointerCapture(e.pointerId);
+      trySnap(piece);
+      e.preventDefault();
+    });
+
+    piece.el.addEventListener("pointercancel", (e) => {
+      if (piece.el.hasPointerCapture(e.pointerId)) {
+        piece.el.releasePointerCapture(e.pointerId);
+      }
+    });
+  }
+
+  function shufflePieces(){
+    // Only shuffle unplaced pieces
+    const layerRect = piecesLayer.getBoundingClientRect();
+    const pad = 6;
+
+    pieces.forEach((p) => {
+      if (p.placed) return;
+      const x = clamp(Math.random() * (layerRect.width - p.w), pad, layerRect.width - p.w - pad);
+      const y = clamp(Math.random() * (layerRect.height - p.h), pad, layerRect.height - p.h - pad);
+      p.x = x; p.y = y;
+      p.el.style.left = `${x}px`;
+      p.el.style.top = `${y}px`;
+    });
+  }
+
+  function resetPuzzle(){
+    // Unlock everything and reshuffle
+    pieces.forEach((p) => {
+      p.placed = false;
+      p.el.classList.remove("placed");
+    });
+    placedCount = 0;
+    updateStatus();
+    shufflePieces();
+    resetTimer(true);
+  }
+
+  function toggleHint(){
+    hintOn = !hintOn;
+    hint.style.display = hintOn ? "block" : "none";
+    btnHint.textContent = `Hint: ${hintOn ? "On" : "Off"}`;
+  }
+
+  // Rebuild targets/piece sizes on resize to keep it responsive
+  let resizeTimer = null;
+  function onResize(){
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      // Recreate everything for simplicity (keeps mobile-friendly and avoids weird math)
+      createPieces();
+    }, 150);
+  }
+
+  // ========= Wire up =========
+  btnShuffle.addEventListener("click", shufflePieces);
+  btnReset.addEventListener("click", resetPuzzle);
+  btnHint.addEventListener("click", toggleHint);
+  btnPrev.addEventListener("click", () => setPuzzle(currentIndex - 1));
+  btnNext.addEventListener("click", () => setPuzzle(currentIndex + 1));
+  piecesLayer.addEventListener("pointerdown", (e) => {
+    const p = pieces.find(x => x.el === e.target);
+    if (!p || p.placed) return;
+    p.el.style.zIndex = String(Date.now());
+  });
+
+  // Load image (so we know it exists) then init
+  const img = new Image();
+  img.onload = () => setPuzzle(currentIndex);
+  img.onerror = () => {
+    alert("Could not load puzzle image. Check the ?img= path.");
+  };
+  img.src = imgSrc;
+
+  window.addEventListener("resize", onResize, { passive: true });
+})();
+</script>
+</body>
+</html>

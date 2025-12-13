@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base-top: #050915;
+      --bg-base-bottom: #0a1021;
+      --bg-glow-1: rgba(69, 192, 163, 0.32);
+      --bg-glow-2: rgba(78, 122, 214, 0.3);
+      --bg-glow-3: rgba(245, 165, 36, 0.22);
+      --glass: rgba(255, 255, 255, 0.06);
+      --glass-strong: rgba(255, 255, 255, 0.08);
+      --text-primary: #eaf4ff;
+      --accent: #45c0a3;
+      --accent-strong: #f5a524;
+      --button-hover: rgba(69, 192, 163, 0.22);
+      --button-active: rgba(69, 192, 163, 0.34);
+      --shadow-soft: 0 10px 24px rgba(0,0,0,0.12);
+      --shadow-strong: 0 12px 26px rgba(0,0,0,0.16);
+      --border-gradient: linear-gradient(165deg, #45c0a3, #f5d76f, #45c0a3, #f5d76f);
+    }
+
+    html {
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 20% 15%, var(--bg-glow-1) 0%, transparent 45%),
+        radial-gradient(circle at 82% 8%, var(--bg-glow-2) 0%, transparent 52%),
+        radial-gradient(circle at 50% 90%, var(--bg-glow-3) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-base-top) 0%, var(--bg-base-bottom) 100%);
+      background-attachment: fixed;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(69, 192, 163, 0.26) 0%, transparent 54%),
+        radial-gradient(circle at 78% 15%, rgba(78, 122, 214, 0.24) 0%, transparent 56%),
+        radial-gradient(circle at 50% 80%, rgba(245, 165, 36, 0.2) 0%, transparent 66%),
+        linear-gradient(180deg, rgba(5, 9, 21, 0.95) 0%, rgba(7, 12, 27, 0.96) 100%);
+      margin: 0;
+      padding:0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding-bottom:100px;
+      background-attachment: fixed;
+      color: var(--text-primary);
+    }
+
+    h1 {
+      font-size: 2.3em;
+      margin-bottom: 1em;
+      color: var(--text-primary);
+      letter-spacing:0.2em;
+      font-weight:600;
+      text-transform: uppercase;
+    }
+
+    .title-chip {
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      box-sizing: border-box;
+      text-align: center;
+      padding: 16px 20px;
+      background: var(--glass);
+      border: 1px solid transparent;
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    .title-chip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.4px;
+      border-radius: 14px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    h2 {
+      color: var(--text-primary);
+    }
+
+    .titlebox {
+      display: flex;
+      flex-direction: column;
+      width: 92%;
+      max-width: 1000px;
+      margin: 16px auto 12px;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      height: auto;
+    }
+
+    p {
+      font-size: 1.4em;
+      color: var(--text-primary);
+      margin-bottom: 5%;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+
+    .intro-chip {
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      box-sizing: border-box;
+      text-align: center;
+      padding: 20px 20px;
+      background: var(--glass);
+      color: var(--text-primary);
+      border: 1px solid transparent;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(6px) saturate(120%);
+      -webkit-backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    .intro-chip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 12px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    /* (Trivia hub button removed; link lives in More Games) */
+
+    .glass-shell {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 10px auto 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
+      z-index: 0;
+      box-sizing: border-box;
+    }
+
+    #categories {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0 auto 1.4em;
+      padding: 0 12px;
+      width: 92%;
+      max-width: 760px;
+      box-sizing: border-box;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .category-btn {
+      position: relative;
+      overflow: hidden;
+      background: var(--glass);
+      color: var(--text-primary);
+      border: 1px solid transparent;
+      border-radius:14px;
+      padding: 1em 2.3em;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      text-transform: uppercase;
+      font-weight: 400;
+      letter-spacing: 0.09em;
+      width: 100%;
+      max-width: none;
+      margin-bottom: 0;
+      box-sizing: border-box;
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .category-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-strong);
+      background: var(--button-hover);
+    }
+
+    .category-btn.open {
+      background: var(--button-active);
+      box-shadow: var(--shadow-strong);
+      color: var(--accent-strong);
+    }
+
+    .category-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.4px;
+      border-radius: 14px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    .category-btn .arrow {
+      display: inline-block;
+      margin-left: 8px;
+    }
+
+    .subcategory-title {
+      font-family: 'Jost', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      text-align: center;
+      width:85%;
+      padding: 0.5em 0;
+      text-transform: uppercase;
+    }
+
+    .subcategory-group {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 0.55em;
+      margin-top: 0.6em;
+    }
+
+    .subcategory-group.open {
+      display: flex;
+    }
+
+    .subcategory-btn {
+      position: relative;
+      overflow: hidden;
+      background: var(--glass);
+      color: var(--text-primary);
+      font-size:1.05em;
+      font-weight:600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius:12px;
+      padding:1.05em 1.8em;
+      width: 100%;
+      max-width: 680px;
+      margin: 0.35em auto;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      white-space: normal;
+      overflow-wrap: normal;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+     backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .subcategory-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-strong);
+      background: var(--button-hover);
+    }
+
+    .subcategory-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 12px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    .subcategory-btn.active{
+      color: var(--accent-strong);
+      background: var(--button-active);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .direct-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      text-align: center;
+      width: 100%;
+      max-width: 680px;
+      min-height: 56px;
+      color: var(--text-primary);
+      box-sizing: border-box;
+    }
+
+    #quizzes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+      width: 100%;
+    }
+
+    #quiz-display-area {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 2em;
+    }
+
+    .quiz-group {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(10px);
+      overflow: hidden;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      margin-top:0.5em;
+    }
+
+    .quiz-group.active {
+      display:flex !important;
+      opacity: 1;
+      transform: translateY(0);
+      overflow:visible;
+    }
+
+    .quiz-group h2 {
+      margin-bottom: 0.5em;
+      font-size: 1.3em;
+      color: var(--text-primary);
+      letter-spacing: 0.08em;
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .quiz-group.active h2 {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.3s;
+    }
+
+    .quiz-btn {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40%;
+      padding: 1em 2em;
+      margin: 0.5em auto;
+      background: var(--glass);
+      border: 1px solid transparent;
+      color: var(--text-primary);
+      border-radius:12px;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 1.1em;
+      letter-spacing: 0.06em;
+      box-sizing: border-box;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      text-align: center;
+      text-decoration: none;
+      backdrop-filter: blur(6px) saturate(130%);
+      -webkit-backdrop-filter: blur(6px) saturate(130%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .quiz-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-strong);
+      background: var(--button-hover);
+    }
+
+    .quiz-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 12px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    @media (max-width: 820px) and (min-width: 661px) {
+      #categories {
+        width: 100%;
+        max-width: 1000px;
+        padding: 0 14px;
+      }
+
+      .cta-row {
+        width: 100%;
+        max-width: 900px;
+        padding: 0 10px;
+      }
+
+      .category-btn {
+        padding: 1em 2.3em;
+        white-space: nowrap;
+        font-size: 0.98em;
+      }
+
+      .subcategory-btn,
+      .direct-link {
+        width: 100%;
+        max-width: 640px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .glass-shell {
+        width: 100%;
+        margin: 10px auto 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .titlebox {
+        width: calc(100% - 64px);
+        max-width: 1000px;
+        margin: 0 auto 0.6em;
+      }
+
+      #categories {
+        width: 100%;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+        gap: 12px;
+      }
+
+      .category-btn {
+        width: 100%;
+        max-width: 600px;
+        min-width: 0;
+        box-sizing: border-box;
+        white-space: nowrap;
+        font-size: 0.98em;
+        padding: 1em 2.3em;
+      }
+
+      .subcategory-btn,
+      .direct-link {
+        width: 100%;
+        max-width: 640px;
+      }
+    }
+
+    @media (max-width: 660px) {
+      #categories {
+        width: 100%;
+        max-width: 760px;
+        padding: 0 10px;
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+      }
+
+      .category-btn {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        box-sizing: border-box;
+        padding:1.1em 2.3em;
+      }
+
+      .quiz-btn {
+        width:96%;
+      }
+
+      .subcategory-btn,
+      .direct-link{
+        width:100%;
+        max-width: 600px;
+        min-height: 56px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .glass-shell {
+        width: 100%;
+        margin: 8px auto 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .titlebox {
+        width: calc(100% - 20px);
+        max-width: 900px;
+        margin: 0 auto 0.4em;
+      }
+
+      #categories {
+        padding: 0 10px;
+        gap: 12px;
+        align-items: stretch;
+        grid-template-columns: 1fr;
+      }
+
+      .subcategory-group {
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+
+      .cta-row {
+        padding: 0 10px;
+        margin: 16px auto 0;
+        width: 100%;
+        max-width: 900px;
+      }
+
+      .wide-link {
+        width: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="titlebox">
+    <h1 class="toptitle fade-in-load title-chip">Games</h1>
+    <p class="fade-in-load intro-chip">Choose from the categories below to see related games!</p>
+  </div>
+
+
+  <div class="glass-shell fade-in-load">
+    <div id="categories">
+      <button class="category-btn" data-toggle="beverage-subcategories" id="beverage-toggle">Beverage Graphic Games <span class="arrow">▼</span></button>
+      <button class="category-btn" data-toggle="more-subcategories" id="more-toggle">More Games <span class="arrow">▼</span></button>
+    </div>
+
+   <!-- Subcategories -->
+<div class="subcategory-group" id="beverage-subcategories">
+  <h2 class="subcategory-title">Beverage Graphic Games</h2>
+  <button class="subcategory-btn" data-subcategory="beverage-memory">Beverage Matching Memory Game</button>
+  <a class="subcategory-btn direct-link" href="beveragepuzzle.html">Build the Puzzle Game</a>
+</div>
+
+<div class="subcategory-group" id="more-subcategories">
+  <h2 class="subcategory-title">More Games</h2>
+  <button class="subcategory-btn" data-subcategory="word-builder">Word Games</button>
+  <a class="subcategory-btn direct-link" href="index.html">Trivia Games</a>
+</div>
+
+  <!-- QUIZ DISPLAY AREA -->
+<div id="quiz-display-area">
+  <!-- Only one .quiz-group will show here at a time -->
+  <div class="quiz-group" id="beverage-memory">
+    <h2>Beverage Matching Memory Game</h2>
+    <a href="match-lite.html" class="quiz-btn">Mobile Drink Match</a>
+    <a href="match.html" class="quiz-btn">Full Drink Match</a>
+  </div>
+
+  <div class="quiz-group" id="word-builder">
+    <h2>Word Games</h2>
+    <a href="wordgame.html" class="quiz-btn">Word Builder</a>
+  </div>
+</div>
+
+</div> <!-- end glass-shell -->
+
+<script>
+  // Selectors
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  const subcategoryButtons = document.querySelectorAll(".subcategory-btn");
+  const quizGroups = document.querySelectorAll(".quiz-group");
+  const allToggleButtons = document.querySelectorAll(".category-btn[data-toggle]");
+  const allSubcategoryGroups = document.querySelectorAll(".subcategory-group");
+  const scrollOptions = { behavior: "smooth", block: "start", inline: "nearest" };
+
+  function scrollToElement(el) {
+    if (!el) return;
+    requestAnimationFrame(() => el.scrollIntoView(scrollOptions));
+  }
+
+  // Handle category button clicks
+  categoryButtons.forEach(button => {
+    const toggleTarget = button.getAttribute("data-toggle");
+
+    button.addEventListener("click", () => {
+      if (toggleTarget) {
+        const targetEl = document.getElementById(toggleTarget);
+        const isOpen = targetEl.classList.contains("open");
+
+        // Hide all quiz groups
+        quizGroups.forEach(group => group.classList.remove("active"));
+
+        // Close all dropdowns
+        allSubcategoryGroups.forEach(group => group.classList.remove("open"));
+        allToggleButtons.forEach(btn => btn.classList.remove("open"));
+
+        if (!isOpen) {
+          targetEl.classList.add("open");
+          button.classList.add("open");
+          scrollToElement(targetEl);
+        }
+
+        // Clear selected subcategory highlighting
+        subcategoryButtons.forEach(btn => btn.classList.remove("active"));
+
+        return;
+      }
+    });
+  });
+
+  // Subcategory buttons
+  subcategoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const subcategory = button.getAttribute("data-subcategory");
+
+      // Hide all quiz groups
+      quizGroups.forEach(group => group.classList.remove("active"));
+
+      // Show selected quiz group
+      const selectedGroup = document.getElementById(subcategory);
+      selectedGroup?.classList.add("active");
+      scrollToElement(selectedGroup);
+
+      // Highlight the selected subcategory button
+      subcategoryButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+    });
+  });
+</script>
+</body>
+</html>
