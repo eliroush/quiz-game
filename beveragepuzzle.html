@@ -117,7 +117,8 @@
       flex-wrap:wrap;
       justify-content:flex-end;
     }
-    button{
+    button,
+    .control-btn{
       appearance:none;
       border: 1px solid transparent;
       background: var(--glass);
@@ -137,7 +138,8 @@
       overflow: hidden;
       transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
     }
-    button::after{
+    button::after,
+    .control-btn::after{
       content:"";
       position:absolute;
       inset:0;
@@ -149,12 +151,23 @@
       -webkit-mask-composite: xor;
               mask-composite: exclude;
     }
-    button:hover{
+    button:hover,
+    .control-btn:hover{
       background: var(--button-hover);
       box-shadow: var(--shadow-strong);
       transform: translateY(-1px);
     }
-    button:active{ transform: translateY(0); }
+    button:active,
+    .control-btn:active{ transform: translateY(0); }
+
+    .control-btn{
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      min-height: 40px;
+    }
 
     .stage{
       background: var(--glass);
@@ -381,6 +394,12 @@
       .controls-footer .nav-row{
         width: 100%;
         justify-content: flex-start;
+        gap: 8px;
+      }
+      .controls-footer .nav-row button,
+      .controls-footer .nav-row .control-btn{
+        padding: 10px 14px;
+        white-space: nowrap;
       }
       .timer-chip{
         align-self: flex-start;
@@ -425,8 +444,9 @@
           </div>
           <div class="small controls controls-footer">
             <div class="nav-row">
-              <button id="btnPrev" type="button" style="padding:10px 25px;">Prev</button>
-              <button id="btnNext" type="button" style="padding:10px 25px;">Next</button>
+              <button id="btnPrev" type="button">Prev</button>
+              <button id="btnNext" type="button">Next</button>
+              <a class="control-btn" href="games.html">Games Hub</a>
             </div>
             <span id="timerDisplay" class="timer-chip">00:00</span>
           </div>

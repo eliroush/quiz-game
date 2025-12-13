@@ -17,6 +17,7 @@
       --text-primary: #eaf4ff;
       --accent: #45c0a3;
       --accent-strong: #f5a524;
+      --accent-light: #ffce7f;
       --button-hover: rgba(69, 192, 163, 0.22);
       --button-active: rgba(69, 192, 163, 0.34);
       --shadow-soft: 0 10px 24px rgba(0,0,0,0.12);
@@ -57,7 +58,7 @@
     h1 {
       font-size: 2.3em;
       margin-bottom: 1em;
-      color: var(--text-primary);
+      color: var(--accent-strong);
       letter-spacing:0.2em;
       font-weight:600;
       text-transform: uppercase;
@@ -182,11 +183,70 @@
       align-items: center;
     }
 
-    .category-btn {
+    .quick-links {
+      width: 92%;
+      max-width: 760px;
+      margin: 0 auto 1.2em;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 12px;
+      box-sizing: border-box;
+      align-items: center;
+    }
+
+    .quick-link {
       position: relative;
       overflow: hidden;
       background: var(--glass);
       color: var(--text-primary);
+      border: 1px solid transparent;
+      border-radius:14px;
+      padding: 1.05em 2em;
+      font-size: 1.02em;
+      font-weight:600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 720px;
+      box-sizing: border-box;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px) saturate(130%);
+      -webkit-backdrop-filter: blur(8px) saturate(130%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .quick-link:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-strong);
+      background: var(--button-hover);
+      color: var(--accent-light);
+    }
+
+    .quick-link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1.2px;
+      border-radius: 14px;
+      background: var(--border-gradient);
+      pointer-events: none;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    .category-btn {
+      position: relative;
+      overflow: hidden;
+      background: var(--glass);
+      color: color-mix(in srgb, var(--text-primary) 70%, transparent);
       border: 1px solid transparent;
       border-radius:14px;
       padding: 1em 2.3em;
@@ -194,10 +254,10 @@
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
       text-transform: uppercase;
-      font-weight: 400;
+      font-weight: 600;
       letter-spacing: 0.09em;
       width: 100%;
-      max-width: none;
+      max-width: 720px;
       margin-bottom: 0;
       box-sizing: border-box;
       backdrop-filter: blur(8px) saturate(130%);
@@ -214,7 +274,7 @@
     .category-btn.open {
       background: var(--button-active);
       box-shadow: var(--shadow-strong);
-      color: var(--accent-strong);
+      color: var(--accent-light);
     }
 
     .category-btn::after {
@@ -235,12 +295,14 @@
     .category-btn .arrow {
       display: inline-block;
       margin-left: 8px;
+      color: var(--accent-strong)
     }
 
     .subcategory-title {
       font-family: 'Jost', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 600;
+      letter-spacing: 0.1rem;
       color: var(--text-primary);
       margin-bottom: 0.5rem;
       text-align: center;
@@ -434,6 +496,15 @@
         max-width: 1000px;
         padding: 0 14px;
       }
+      h1 {
+        font-size:1.8em;
+      }
+
+         p {
+      font-size: 1.2em;
+      letter-spacing: 0.1em;
+    }
+
 
       .cta-row {
         width: 100%;
@@ -467,9 +538,12 @@
         max-width: 1000px;
         margin: 0 auto 0.6em;
       }
+   
+
 
       #categories {
-        width: 100%;
+        width: 92%;
+        max-width: 760px;
         box-sizing: border-box;
         flex-direction: column;
         align-items: center;
@@ -479,7 +553,7 @@
 
       .category-btn {
         width: 100%;
-        max-width: 600px;
+        max-width: 720px;
         min-width: 0;
         box-sizing: border-box;
         white-space: nowrap;
@@ -505,12 +579,23 @@
         margin: 0 auto;
       }
 
+        h1 {
+        font-size:1.8em;
+        letter-spacing:0.15em;
+      }
+     p {
+      font-size: 1.2em;
+      letter-spacing: 0.1em;
+    }
+
+
       .category-btn {
         width: 100%;
         max-width: none;
         min-width: 0;
         box-sizing: border-box;
         padding:1.1em 2.3em;
+        max-width: 600px;
       }
 
       .quiz-btn {
@@ -523,6 +608,18 @@
         max-width: 600px;
         min-height: 56px;
       }
+
+      .quick-links {
+        width: 100%;
+        max-width: 760px;
+        padding: 0 10px;
+        align-items: center;
+      }
+
+      .quick-link {
+        width: 100%;
+        max-width: 600px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -532,6 +629,19 @@
         padding: 0;
         box-sizing: border-box;
       }
+
+        h1 {
+        font-size:1.5em;
+        letter-spacing:0.12em;
+      }
+     p {
+      font-size: 1.1em;
+      letter-spacing: 0.1em;
+    }
+     h2.subcategory-title{
+        font-size:1.2rem;
+     }
+
 
       .titlebox {
         width: calc(100% - 20px);
@@ -564,30 +674,45 @@
         margin: 0 auto;
       }
     }
+@media (max-width: 432px){
+    h1 {
+        font-size:1.2em;
+        letter-spacing:0.12em;
+      }
+          p {
+      font-size: 1em;
+      letter-spacing: 0.09em;
+    }
+} 
+
+  
+
+
   </style>
 </head>
 <body>
   <div class="titlebox">
-    <h1 class="toptitle fade-in-load title-chip">Games</h1>
-    <p class="fade-in-load intro-chip">Choose from the categories below to see related games!</p>
+    <h1 class="toptitle fade-in-load title-chip">The Beverage Game Bar</h1>
+    <p class="fade-in-load intro-chip">Play interactive games inspired by original watercolor beverage paintings—mix, match, and build your way through drink-themed graphics.
+</p>
   </div>
 
 
   <div class="glass-shell fade-in-load">
+
+    <div class="quick-links">
+      <a class="quick-link" href="match-lite.html">Beverage Match (Phone)</a>
+      <a class="quick-link" href="match.html">Beverage Match (Desktop)</a>
+      <a class="quick-link" href="beveragepuzzle.html">Build the Drink (Puzzle)</a>
+    </div>
+
     <div id="categories">
-      <button class="category-btn" data-toggle="beverage-subcategories" id="beverage-toggle">Beverage Graphic Games <span class="arrow">▼</span></button>
       <button class="category-btn" data-toggle="more-subcategories" id="more-toggle">More Games <span class="arrow">▼</span></button>
     </div>
 
    <!-- Subcategories -->
-<div class="subcategory-group" id="beverage-subcategories">
-  <h2 class="subcategory-title">Beverage Graphic Games</h2>
-  <button class="subcategory-btn" data-subcategory="beverage-memory">Beverage Matching Memory Game</button>
-  <a class="subcategory-btn direct-link" href="beveragepuzzle.html">Build the Puzzle Game</a>
-</div>
-
 <div class="subcategory-group" id="more-subcategories">
-  <h2 class="subcategory-title">More Games</h2>
+  <h2 class="subcategory-title">Other Game Types</h2>
   <button class="subcategory-btn" data-subcategory="word-builder">Word Games</button>
   <a class="subcategory-btn direct-link" href="index.html">Trivia Games</a>
 </div>
@@ -595,12 +720,6 @@
   <!-- QUIZ DISPLAY AREA -->
 <div id="quiz-display-area">
   <!-- Only one .quiz-group will show here at a time -->
-  <div class="quiz-group" id="beverage-memory">
-    <h2>Beverage Matching Memory Game</h2>
-    <a href="match-lite.html" class="quiz-btn">Mobile Drink Match</a>
-    <a href="match.html" class="quiz-btn">Full Drink Match</a>
-  </div>
-
   <div class="quiz-group" id="word-builder">
     <h2>Word Games</h2>
     <a href="wordgame.html" class="quiz-btn">Word Builder</a>
